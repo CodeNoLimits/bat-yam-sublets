@@ -1,0 +1,967 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bat Yam Sublets & Studios ≤ ₪3,000 | סאבלט ודירות בבת ים לכניסה מיידית</title>
+  <style>
+    :root {
+      --bg: #0f172a;
+      --card: #1e293b;
+      --border: #334155;
+      --text: #f8fafc;
+      --muted: #94a3b8;
+      --accent: #38bdf8;
+      --green: #22c55e;
+      --amber: #f59e0b;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.55;
+      padding-bottom: 60px;
+    }
+    .hero {
+      background: linear-gradient(135deg, #0284c7 0%, #1e3a8a 100%);
+      padding: 28px 20px;
+      text-align: center;
+      border-bottom: 2px solid var(--accent);
+    }
+    .hero h1 {
+      font-size: 1.65rem;
+      margin-bottom: 6px;
+      font-weight: 800;
+    }
+    .hero h2 {
+      font-size: 1.35rem;
+      margin-bottom: 12px;
+      color: #e0f2fe;
+      direction: rtl;
+    }
+    .hero-sub {
+      max-width: 820px;
+      margin: 0 auto 16px;
+      font-size: 0.95rem;
+      color: #f0f9ff;
+    }
+    .top-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: center;
+      align-items: center;
+      margin-top: 14px;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      padding: 10px 16px;
+      border-radius: 10px;
+      font-weight: 700;
+      font-size: 0.92rem;
+      text-decoration: none;
+      cursor: pointer;
+      border: none;
+      transition: transform 0.12s ease, opacity 0.12s ease;
+    }
+    .btn:hover { transform: translateY(-1px); opacity: 0.95; }
+    .btn-pdf { background: #ef4444; color: #fff; box-shadow: 0 4px 14px rgba(239,68,68,0.4); }
+    .btn-wa { background: #22c55e; color: #052e16; }
+    .btn-call { background: #eab308; color: #1e293b; }
+    .btn-source { background: #38bdf8; color: #0f172a; }
+    .btn-dorin { background: #64748b; color: #f8fafc; }
+    .lang-switch {
+      background: rgba(15,23,42,0.75);
+      color: #fff;
+      border: 1px solid #7dd3fc;
+      padding: 8px 14px;
+      border-radius: 8px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+    .cron-banner {
+      max-width: 1140px;
+      margin: 18px auto 0;
+      padding: 12px 18px;
+      background: rgba(34,197,94,0.12);
+      border: 1px solid #22c55e;
+      border-radius: 12px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.9rem;
+    }
+    .container {
+      max-width: 1140px;
+      margin: 20px auto;
+      padding: 0 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+    .apt-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.35);
+    }
+    .card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 18px;
+      background: #0f172a;
+      border-bottom: 1px solid var(--border);
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .rank-pill {
+      background: var(--accent);
+      color: #0f172a;
+      font-weight: 900;
+      font-size: 1.1rem;
+      padding: 4px 12px;
+      border-radius: 999px;
+    }
+    .tier-top {
+      background: rgba(245,158,11,0.2);
+      color: #fbbf24;
+      border: 1px solid #f59e0b;
+      padding: 4px 12px;
+      border-radius: 999px;
+      font-weight: 700;
+      font-size: 0.85rem;
+    }
+    .tier-bonus {
+      background: rgba(56,189,248,0.15);
+      color: #7dd3fc;
+      border: 1px solid #38bdf8;
+      padding: 4px 12px;
+      border-radius: 999px;
+      font-weight: 700;
+      font-size: 0.85rem;
+    }
+    .price-pill {
+      background: var(--green);
+      color: #052e16;
+      font-weight: 900;
+      font-size: 1.15rem;
+      padding: 4px 14px;
+      border-radius: 999px;
+    }
+    .photo-section {
+      background: #090d16;
+      padding: 12px;
+      text-align: center;
+    }
+    .main-photo {
+      width: 100%;
+      max-height: 400px;
+      object-fit: cover;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+    }
+    .thumbs-row {
+      display: flex;
+      gap: 10px;
+      justify-content: center;
+      margin-top: 10px;
+      overflow-x: auto;
+      padding-bottom: 4px;
+    }
+    .thumb {
+      width: 82px;
+      height: 62px;
+      object-fit: cover;
+      border-radius: 8px;
+      cursor: pointer;
+      border: 2px solid transparent;
+      transition: border-color 0.15s;
+    }
+    .thumb:hover { border-color: var(--accent); }
+    .bilingual-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+      padding: 18px;
+    }
+    @media (max-width: 820px) {
+      .bilingual-grid { grid-template-columns: 1fr; }
+    }
+    .lang-col {
+      background: rgba(15,23,42,0.55);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 16px;
+    }
+    .lang-tag {
+      font-size: 0.78rem;
+      font-weight: 800;
+      color: var(--accent);
+      margin-bottom: 6px;
+      letter-spacing: 0.05em;
+    }
+    .apt-title {
+      font-size: 1.2rem;
+      margin-bottom: 8px;
+      color: #fff;
+    }
+    .price-detail {
+      color: #4ade80;
+      font-weight: 700;
+      margin-bottom: 8px;
+      font-size: 0.96rem;
+    }
+    .address-line, .contact-line {
+      font-size: 0.92rem;
+      margin-bottom: 8px;
+      color: #e2e8f0;
+    }
+    .badges-wrap {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 10px;
+    }
+    .badge {
+      font-size: 0.76rem;
+      padding: 3px 9px;
+      border-radius: 6px;
+      font-weight: 700;
+      background: rgba(56,189,248,0.16);
+      color: #bae6fd;
+    }
+    .why-box {
+      font-size: 0.92rem;
+      color: #cbd5e1;
+      margin-bottom: 10px;
+    }
+    .orig-quote {
+      font-size: 0.85rem;
+      color: #fde68a;
+      background: rgba(245,158,11,0.1);
+      border-right: 3px solid #f59e0b;
+      padding: 8px 10px;
+      border-radius: 6px;
+      margin-bottom: 10px;
+    }
+    .actions-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      padding: 14px 18px;
+      background: rgba(15,23,42,0.8);
+      border-top: 1px solid var(--border);
+    }
+    body.mode-en .lang-he { display: none; }
+    body.mode-en .bilingual-grid { grid-template-columns: 1fr; }
+    body.mode-he .lang-en { display: none; }
+    body.mode-he .bilingual-grid { grid-template-columns: 1fr; }
+  </style>
+</head>
+<body>
+  <header class="hero">
+    <h1>🏖️ Bat Yam Sublets & Studios ≤ ₪3,000 (Immediate Move-In Before Tuesday)</h1>
+    <h2>סאבלט ודירות בבת ים עד 3,000 ₪ — כניסה מיידית לפני יום שלישי (ללא צ'קים / כולל הכל)</h2>
+    <p class="hero-sub">
+      Prepared for <strong>David & Leeya</strong> · Verified Live Listings from Facebook Sublet Groups, Yad2, Dorin, Glotels & Israela · Direct WhatsApp & Original Links Included
+    </p>
+    <div class="top-bar">
+      <a href="bat-yam-sublets-en-he.pdf" target="_blank" class="btn btn-pdf">
+        📄 Download Bilingual PDF (EN + עברית) · הורדת קובץ PDF מלא
+      </a>
+      <button class="lang-switch" onclick="document.body.className=''">🇬🇧 + 🇮🇱 Both Languages (דו-לשוני)</button>
+      <button class="lang-switch" onclick="document.body.className='mode-en'">🇬🇧 English Only</button>
+      <button class="lang-switch" onclick="document.body.className='mode-he'">🇮🇱 עברית בלבד</button>
+    </div>
+  </header>
+
+  <div class="cron-banner">
+    <div>🤖 <strong>Autonomous Sublet Hunter Active (Every 6 Hours):</strong> Scanning Facebook Groups, Marketplace, Yad2, Dorin & Israela automatically.</div>
+    <div dir="rtl">🔄 <strong>סוכן חיפוש אוטומטי פעיל (כל 6 שעות):</strong> עדכון אחרון: <code>2026-10-19 02:03 (Israel Time)</code></div>
+  </div>
+
+  <main class="container">
+    
+    <article class="apt-card" id="apt-1">
+      <div class="card-header">
+        <div class="rank-pill">#1</div>
+        <span class="tier-top">⭐ TOP PICK ≤ ₪3,000 · מומלץ</span>
+        <div class="price-pill">₪3,000/mo</div>
+      </div>
+
+      <div class="photo-section">
+        <a href="photos/123e4797_0.jpg" target="_blank">
+          <img id="main-img-1" src="photos/123e4797_0.jpg" class="main-photo" alt="Beachfront Furnished Hotel Studio — Derech Ben Gurion 59" loading="lazy"/>
+        </a>
+        <div class="thumbs-row"><img src="photos/123e4797_0.jpg" class="thumb" onclick="document.getElementById('main-img-1').src='photos/123e4797_0.jpg'" alt="Photo 1" loading="lazy"/><img src="photos/123e4797_1.jpg" class="thumb" onclick="document.getElementById('main-img-1').src='photos/123e4797_1.jpg'" alt="Photo 2" loading="lazy"/><img src="photos/123e4797_2.jpg" class="thumb" onclick="document.getElementById('main-img-1').src='photos/123e4797_2.jpg'" alt="Photo 3" loading="lazy"/><img src="photos/123e4797_3.jpg" class="thumb" onclick="document.getElementById('main-img-1').src='photos/123e4797_3.jpg'" alt="Photo 4" loading="lazy"/></div>
+      </div>
+
+      <div class="bilingual-grid">
+        <!-- ENGLISH COLUMN -->
+        <div class="lang-col lang-en" dir="ltr">
+          <div class="lang-tag">🇬🇧 ENGLISH</div>
+          <h2 class="apt-title">Beachfront Furnished Hotel Studio — Derech Ben Gurion 59</h2>
+          <div class="price-detail">₪3,000 / month — ALL INCLUSIVE (Electricity, Water, Arnona included)</div>
+          <div class="address-line">📍 <strong>Address:</strong> Derech Ben Gurion 59, Bat Yam (Promenade / Seafront)</div>
+          <div class="badges-wrap"><span class="badge badge-en">All-Inclusive</span><span class="badge badge-en">Beachfront Hotel Unit</span><span class="badge badge-en">Zero Bill Transfers</span><span class="badge badge-en">Immediate Entry</span></div>
+          <p class="why-box">Furnished studio unit inside a beachfront aparthotel/hotel. All-inclusive monthly rate (₪3,000 total) — zero Israeli bank checks, zero guarantors, zero utility bill transfers. Posted Oct 18 for immediate entry before Tuesday.</p>
+          <div class="contact-line">👤 <strong>Contact:</strong> Katia (קטיה) </div>
+        </div>
+
+        <!-- HEBREW COLUMN -->
+        <div class="lang-col lang-he" dir="rtl">
+          <div class="lang-tag">🇮🇱 עברית</div>
+          <h2 class="apt-title">יחידת סטודיו מרוהטת בתוך מלון מול הים — דרך בן גוריון 59, בת ים</h2>
+          <div class="price-detail">3,000 ₪ לחודש — כולל הכל (חשמל, מים, ארנונה וועד)</div>
+          <div class="address-line">📍 <strong>כתובת:</strong> דרך בן גוריון 59, בת ים (טיילת / קו ראשון לים)</div>
+          <div class="badges-wrap"><span class="badge badge-he">כולל הכל</span><span class="badge badge-he">מול הים (מלון)</span><span class="badge badge-he">ללא העברת חשבונות</span><span class="badge badge-he">כניסה מיידית</span></div>
+          <p class="why-box">יחידה בתוך מלון מרוהטת מול הים מתאים ליחיד/זוג מחיר 3000 ש"ח לחודש כולל הכל. כניסה מיידית ללא העברת חשבונות וללא בירוקרטיה.</p>
+          <blockquote class="orig-quote">״יחידה בתוך מלון מרוהטת מול הים מתאים ליחיד/זוג מחיר 3000 ש"ח לחודש כולל הכל״</blockquote>
+          <div class="contact-line">👤 <strong>איש קשר:</strong> Katia (קטיה) </div>
+        </div>
+      </div>
+
+      <div class="actions-bar">
+        
+        <a href="https://www.yad2.co.il/realestate/item/jrrvxsu7" target="_blank" rel="noopener" class="btn btn-wa">
+          💬 Contact Katia (קטיה) on Yad2 · יצירת קשר במודעה
+        </a>
+        
+        <a href="https://www.yad2.co.il/realestate/item/jrrvxsu7" target="_blank" rel="noopener" class="btn btn-source">
+          🔗 Original Ad (Yad2) · מודעה מקורית
+        </a>
+        <a href="https://dorin.app/apartments/123e4797-95be-42ef-9c11-5661acfd8c87" target="_blank" rel="noopener" class="btn btn-dorin">
+          🔗 Dorin Card · כרטיס דירה
+        </a>
+      </div>
+    </article>
+    
+    <article class="apt-card" id="apt-2">
+      <div class="card-header">
+        <div class="rank-pill">#2</div>
+        <span class="tier-top">⭐ TOP PICK ≤ ₪3,000 · מומלץ</span>
+        <div class="price-pill">₪2,800/mo</div>
+      </div>
+
+      <div class="photo-section">
+        <a href="photos/085ee373_0.jpg" target="_blank">
+          <img id="main-img-2" src="photos/085ee373_0.jpg" class="main-photo" alt="Whole Apartment Sublet / Immediate Takeover — Herzl 1" loading="lazy"/>
+        </a>
+        <div class="thumbs-row"><img src="photos/085ee373_0.jpg" class="thumb" onclick="document.getElementById('main-img-2').src='photos/085ee373_0.jpg'" alt="Photo 1" loading="lazy"/><img src="photos/085ee373_1.jpg" class="thumb" onclick="document.getElementById('main-img-2').src='photos/085ee373_1.jpg'" alt="Photo 2" loading="lazy"/><img src="photos/085ee373_2.jpg" class="thumb" onclick="document.getElementById('main-img-2').src='photos/085ee373_2.jpg'" alt="Photo 3" loading="lazy"/><img src="photos/085ee373_3.jpg" class="thumb" onclick="document.getElementById('main-img-2').src='photos/085ee373_3.jpg'" alt="Photo 4" loading="lazy"/></div>
+      </div>
+
+      <div class="bilingual-grid">
+        <!-- ENGLISH COLUMN -->
+        <div class="lang-col lang-en" dir="ltr">
+          <div class="lang-tag">🇬🇧 ENGLISH</div>
+          <h2 class="apt-title">Whole Apartment Sublet / Immediate Takeover — Herzl 1</h2>
+          <div class="price-detail">₪2,800 / month (+ Electricity only — Landlord pays Arnona & all other bills!)</div>
+          <div class="address-line">📍 <strong>Address:</strong> Herzl 1, Bat Yam (Floor 4, Rothschild border, steps from Light Rail & Beach)</div>
+          <div class="badges-wrap"><span class="badge badge-en">Whole Apt Sublet</span><span class="badge badge-en">Direct WhatsApp</span><span class="badge badge-en">Landlord Pays Taxes</span><span class="badge badge-en">Washer + Dryer</span></div>
+          <p class="why-box">Current tenant is moving out early and looking for an immediate replacement. Includes washing machine and dryer. Only ₪2,800 + electricity; landlord covers Arnona, Vaad, and water!</p>
+          <div class="contact-line">👤 <strong>Contact:</strong> Lior Palatshi (ליאור פלטשי) — <strong>050-5988688</strong></div>
+        </div>
+
+        <!-- HEBREW COLUMN -->
+        <div class="lang-col lang-he" dir="rtl">
+          <div class="lang-tag">🇮🇱 עברית</div>
+          <h2 class="apt-title">סאבלט / פינוי מיידי של דירה שלמה — הרצל 1, בת ים</h2>
+          <div class="price-detail">2,800 ₪ לחודש (+ חשמל בלבד — כל שאר התשלומים על בעל הדירה!)</div>
+          <div class="address-line">📍 <strong>כתובת:</strong> הרצל 1, בת ים (קומה 4, צמוד לרוטשילד, לרכבת הקלה ולים)</div>
+          <div class="badges-wrap"><span class="badge badge-he">סאבלט דירה שלמה</span><span class="badge badge-he">וואטסאפ ישיר</span><span class="badge badge-he">מסים על בעל הדירה</span><span class="badge badge-he">מכונת כביסה + מייבש</span></div>
+          <p class="why-box">בנסיבות משמחות מפנה את הדירה ששוכר אותה... קיים מייבש ומכונת כביסה. המחיר הוא רק 2800 + הוצאות חשמל כל שאר התשלומים על בעל הדירה!!</p>
+          <blockquote class="orig-quote">״בנסיבות משמחות מפנה את הדירה ששוכר אותה... קיים מייבש ומכונת כביסה. המחיר הוא רק 2800 + הוצאות חשמל כל שאר התשלומים על בעל הדירה!!״</blockquote>
+          <div class="contact-line">👤 <strong>איש קשר:</strong> Lior Palatshi (ליאור פלטשי) — <strong dir='ltr'>050-5988688</strong></div>
+        </div>
+      </div>
+
+      <div class="actions-bar">
+        
+        <a href="https://wa.me/972505988688?text=%D7%94%D7%99%D7%99%20%D7%9C%D7%99%D7%90%D7%95%D7%A8%2C%20%D7%A8%D7%90%D7%99%D7%AA%D7%99%20%D7%90%D7%AA%20%D7%94%D7%9E%D7%95%D7%93%D7%A2%D7%94%20%D7%A9%D7%9C%D7%9A%20%D7%9C%D7%93%D7%99%D7%A8%D7%94%20%D7%91%D7%94%D7%A8%D7%A6%D7%9C%201%20%D7%91%D7%AA%20%D7%99%D7%9D%20(2800%20%D7%A9%D7%97).%20%D7%90%D7%A0%D7%99%20%D7%9E%D7%97%D7%A4%D7%A9%20%D7%9C%D7%94%D7%99%D7%9B%D7%A0%D7%A1%20%D7%9E%D7%99%D7%99%D7%93%D7%99%D7%AA%20%D7%9C%D7%A4%D7%A0%D7%99%20%D7%99%D7%95%D7%9D%20%D7%A9%D7%9C%D7%99%D7%A9%D7%99%20%D7%A2%D7%9D%20%D7%AA%D7%A9%D7%9C%D7%95%D7%9D%20%D7%91%D7%9E%D7%96%D7%95%D7%9E%D7%9F%2F%D7%94%D7%A2%D7%91%D7%A8%D7%94%20%D7%91%D7%A0%D7%A7%D7%90%D7%99%D7%AA%20%D7%9C%D7%9C%D7%90%20%D7%A6%27%D7%A7%D7%99%D7%9D.%20%D7%90%D7%A4%D7%A9%D7%A8%20%D7%9C%D7%91%D7%95%D7%90%20%D7%9C%D7%A8%D7%90%D7%95%D7%AA%20%D7%94%D7%99%D7%95%D7%9D%3F" target="_blank" rel="noopener" class="btn btn-wa">
+          💬 WhatsApp 050-5988688 · שלח וואטסאפ
+        </a>
+        <a href="tel:0505988688" class="btn btn-call">
+          📞 Call / חייג 050-5988688
+        </a>
+        
+        <a href="https://www.facebook.com/groups/201105170260427/posts/2917317895305794/" target="_blank" rel="noopener" class="btn btn-source">
+          🔗 Original Ad (Facebook Sublet Group) · מודעה מקורית
+        </a>
+        <a href="https://dorin.app/apartments/085ee373-c266-4190-b790-3db27bfc8dd0" target="_blank" rel="noopener" class="btn btn-dorin">
+          🔗 Dorin Card · כרטיס דירה
+        </a>
+      </div>
+    </article>
+    
+    <article class="apt-card" id="apt-3">
+      <div class="card-header">
+        <div class="rank-pill">#3</div>
+        <span class="tier-top">⭐ TOP PICK ≤ ₪3,000 · מומלץ</span>
+        <div class="price-pill">₪2,950/mo</div>
+      </div>
+
+      <div class="photo-section">
+        <a href="photos/israela_0.jpg" target="_blank">
+          <img id="main-img-3" src="photos/israela_0.jpg" class="main-photo" alt="Short & Long-Term Furnished Studios — Rothschild 39" loading="lazy"/>
+        </a>
+        <div class="thumbs-row"><img src="photos/israela_0.jpg" class="thumb" onclick="document.getElementById('main-img-3').src='photos/israela_0.jpg'" alt="Photo 1" loading="lazy"/><img src="photos/israela_1.jpg" class="thumb" onclick="document.getElementById('main-img-3').src='photos/israela_1.jpg'" alt="Photo 2" loading="lazy"/></div>
+      </div>
+
+      <div class="bilingual-grid">
+        <!-- ENGLISH COLUMN -->
+        <div class="lang-col lang-en" dir="ltr">
+          <div class="lang-tag">🇬🇧 ENGLISH</div>
+          <h2 class="apt-title">Short & Long-Term Furnished Studios — Rothschild 39</h2>
+          <div class="price-detail">₪2,950 – ₪3,500 / month — ALL TAXES INCLUDED & NO BILL TRANSFERS</div>
+          <div class="address-line">📍 <strong>Address:</strong> Rothschild 39, Central Bat Yam (Ground floor with yard & parking, near Beach & Light Rail)</div>
+          <div class="badges-wrap"><span class="badge badge-en">No Bill Transfers</span><span class="badge badge-en">All Taxes Included</span><span class="badge badge-en">Direct WhatsApp</span><span class="badge badge-en">Short/Long Term</span></div>
+          <p class="why-box">Dedicated Bat Yam short/long-term studio operator explicitly offering: NO broker fee, ALL taxes included, NO utility account transfers required, immediate entry (weekly or monthly).</p>
+          <div class="contact-line">👤 <strong>Contact:</strong> Sublet Bat Yam Rothschild 39 (סאבלט בת ים) — <strong>052-5551920</strong></div>
+        </div>
+
+        <!-- HEBREW COLUMN -->
+        <div class="lang-col lang-he" dir="rtl">
+          <div class="lang-tag">🇮🇱 עברית</div>
+          <h2 class="apt-title">סאבלט בת ים: דירות סטודיו מרוהטות לטווח קצר/ארוך — רוטשילד 39</h2>
+          <div class="price-detail">2,950 – 3,500 ₪ לחודש — כולל כל המסים וללא העברת חשבונות</div>
+          <div class="address-line">📍 <strong>כתובת:</strong> רוטשילד 39, מרכז בת ים (קומת קרקע עם חצר וחניה, קרוב לים ולרכבת הקלה)</div>
+          <div class="badges-wrap"><span class="badge badge-he">ללא העברת חשבונות</span><span class="badge badge-he">כולל כל המסים</span><span class="badge badge-he">וואטסאפ ישיר</span><span class="badge badge-he">טווח קצר/ארוך</span></div>
+          <p class="why-box">ללא תווך❗️ דירת סטודיו מרוהטת ומאובזרת ברחוב רוטשילד במרכז בת ים❗️ קומת קרקע❗️ כולל כל המסים וללא העברת חשבונות❗️ לכניסה מיידית</p>
+          <blockquote class="orig-quote">״ללא תווך❗️ דירת סטודיו מרוהטת ומאובזרת ברחוב רוטשילד במרכז בת ים❗️ קומת קרקע❗️ כולל כל המסים וללא העברת חשבונות❗️ לכניסה מיידית״</blockquote>
+          <div class="contact-line">👤 <strong>איש קשר:</strong> Sublet Bat Yam Rothschild 39 (סאבלט בת ים) — <strong dir='ltr'>052-5551920</strong></div>
+        </div>
+      </div>
+
+      <div class="actions-bar">
+        
+        <a href="https://wa.me/972525551920?text=%D7%94%D7%99%D7%99%2C%20%D7%A8%D7%90%D7%99%D7%AA%D7%99%20%D7%90%D7%AA%20%D7%94%D7%9E%D7%95%D7%93%D7%A2%D7%94%20%D7%9C%D7%93%D7%99%D7%A8%D7%AA%20%D7%A1%D7%98%D7%95%D7%93%D7%99%D7%95%2F%D7%A1%D7%90%D7%91%D7%9C%D7%98%20%D7%91%D7%A8%D7%95%D7%98%D7%A9%D7%99%D7%9C%D7%93%2039%20%D7%91%D7%AA%20%D7%99%D7%9D.%20%D7%90%D7%A0%D7%99%20%D7%9E%D7%97%D7%A4%D7%A9%20%D7%9B%D7%A0%D7%99%D7%A1%D7%94%20%D7%9E%D7%99%D7%99%D7%93%D7%99%D7%AA%20%D7%9C%D7%A4%D7%A0%D7%99%20%D7%99%D7%95%D7%9D%20%D7%A9%D7%9C%D7%99%D7%A9%D7%99%20%D7%9C%D7%9C%D7%90%20%D7%A6%27%D7%A7%D7%99%D7%9D%20(%D7%9E%D7%96%D7%95%D7%9E%D7%9F%2F%D7%94%D7%A2%D7%91%D7%A8%D7%94).%20%D7%9E%D7%94%20%D7%A4%D7%A0%D7%95%D7%99%20%D7%94%D7%99%D7%95%D7%9D%3F" target="_blank" rel="noopener" class="btn btn-wa">
+          💬 WhatsApp 052-5551920 · שלח וואטסאפ
+        </a>
+        <a href="tel:0525551920" class="btn btn-call">
+          📞 Call / חייג 052-5551920
+        </a>
+        
+        <a href="https://www.glotels.com/IL/Bat-Yam/113533053613891/%D7%A1%D7%90%D7%91%D7%9C%D7%98-%D7%91%D7%AA-%D7%99%D7%9D.-%D7%93%D7%99%D7%A8%D7%95%D7%AA-%D7%9C%D7%98%D7%95%D7%95%D7%97-%D7%90%D7%A8%D7%95%D7%9A%5C%D7%A7%D7%A6%D7%A8" target="_blank" rel="noopener" class="btn btn-source">
+          🔗 Original Ad (Glotels / Sublet Bat Yam) · מודעה מקורית
+        </a>
+        <a href="https://www.glotels.com/IL/Bat-Yam/113533053613891/%D7%A1%D7%90%D7%91%D7%9C%D7%98-%D7%91%D7%AA-%D7%99%D7%9D.-%D7%93%D7%99%D7%A8%D7%95%D7%AA-%D7%9C%D7%98%D7%95%D7%95%D7%97-%D7%90%D7%A8%D7%95%D7%9A%5C%D7%A7%D7%A6%D7%A8" target="_blank" rel="noopener" class="btn btn-dorin">
+          🔗 Dorin Card · כרטיס דירה
+        </a>
+      </div>
+    </article>
+    
+    <article class="apt-card" id="apt-4">
+      <div class="card-header">
+        <div class="rank-pill">#4</div>
+        <span class="tier-top">⭐ TOP PICK ≤ ₪3,000 · מומלץ</span>
+        <div class="price-pill">₪2,750/mo</div>
+      </div>
+
+      <div class="photo-section">
+        <a href="photos/f2e0a51f_0.jpg" target="_blank">
+          <img id="main-img-4" src="photos/f2e0a51f_0.jpg" class="main-photo" alt="100% Furnished 6-Month Sublet — Bat Yam (11 Photos)" loading="lazy"/>
+        </a>
+        <div class="thumbs-row"><img src="photos/f2e0a51f_0.jpg" class="thumb" onclick="document.getElementById('main-img-4').src='photos/f2e0a51f_0.jpg'" alt="Photo 1" loading="lazy"/><img src="photos/f2e0a51f_1.jpg" class="thumb" onclick="document.getElementById('main-img-4').src='photos/f2e0a51f_1.jpg'" alt="Photo 2" loading="lazy"/><img src="photos/f2e0a51f_2.jpg" class="thumb" onclick="document.getElementById('main-img-4').src='photos/f2e0a51f_2.jpg'" alt="Photo 3" loading="lazy"/><img src="photos/f2e0a51f_3.jpg" class="thumb" onclick="document.getElementById('main-img-4').src='photos/f2e0a51f_3.jpg'" alt="Photo 4" loading="lazy"/></div>
+      </div>
+
+      <div class="bilingual-grid">
+        <!-- ENGLISH COLUMN -->
+        <div class="lang-col lang-en" dir="ltr">
+          <div class="lang-tag">🇬🇧 ENGLISH</div>
+          <h2 class="apt-title">100% Furnished 6-Month Sublet — Bat Yam (11 Photos)</h2>
+          <div class="price-detail">₪2,750 / month — Bank Transfer Accepted, Very Simple Contract</div>
+          <div class="address-line">📍 <strong>Address:</strong> Bat Yam (Quiet residential street, 50% Olim Arnona discount active)</div>
+          <div class="badges-wrap"><span class="badge badge-en">Simple Contract</span><span class="badge badge-en">Bank Transfer OK</span><span class="badge badge-en">100% Furnished</span><span class="badge badge-en">11 Real Photos</span></div>
+          <p class="why-box">Explicitly states: 'A very simple contract is required' and bills paid via bank transfer. 100% furnished (new A/C in bedroom, nothing to buy). Shared with 1 tidy UK oleh roommate (25). First person who claims it gets it.</p>
+          <div class="contact-line">👤 <strong>Contact:</strong> Jacob Lee </div>
+        </div>
+
+        <!-- HEBREW COLUMN -->
+        <div class="lang-col lang-he" dir="rtl">
+          <div class="lang-tag">🇮🇱 עברית</div>
+          <h2 class="apt-title">סאבלט מרוהט קומפלט בבת ים — כניסה מהירה וחוזה פשוט (11 תמונות)</h2>
+          <div class="price-detail">2,750 ₪ לחודש — תשלום בהעברה בנקאית, חוזה פשוט במיוחד</div>
+          <div class="address-line">📍 <strong>כתובת:</strong> בת ים (50% הנחת ארנונה פעילה, מרוהטת במלואה עם מזגן חדש)</div>
+          <div class="badges-wrap"><span class="badge badge-he">חוזה פשוט</span><span class="badge badge-he">העברה בנקאית</span><span class="badge badge-he">מרוהטת קומפלט</span><span class="badge badge-he">11 תמונות</span></div>
+          <p class="why-box">מרוהטת ב-100% (לא צריך לקנות כלום, מזגן חדש בחדר השינה). חוזה פשוט ביותר, תשלומים בהעברה בנקאית ו-50% הנחה בארנונה (עם שותף אנגלי שקט ומסודר).</p>
+          <blockquote class="orig-quote">״The apartment comes fully furnished—no need to buy anything. A new air conditioner is installed in the bedroom... Act fast—the apartment goes to the first person who claims it! A very simple contract is required.״</blockquote>
+          <div class="contact-line">👤 <strong>איש קשר:</strong> Jacob Lee </div>
+        </div>
+      </div>
+
+      <div class="actions-bar">
+        
+        <a href="https://www.facebook.com/groups/1424244737803677/posts/4702245673336884/" target="_blank" rel="noopener" class="btn btn-wa">
+          💬 Contact Jacob Lee on Facebook Sublet Group · יצירת קשר במודעה
+        </a>
+        
+        <a href="https://www.facebook.com/groups/1424244737803677/posts/4702245673336884/" target="_blank" rel="noopener" class="btn btn-source">
+          🔗 Original Ad (Facebook Sublet Group) · מודעה מקורית
+        </a>
+        <a href="https://dorin.app/apartments/f2e0a51f-cfee-409e-96aa-951a2c966ce5" target="_blank" rel="noopener" class="btn btn-dorin">
+          🔗 Dorin Card · כרטיס דירה
+        </a>
+      </div>
+    </article>
+    
+    <article class="apt-card" id="apt-5">
+      <div class="card-header">
+        <div class="rank-pill">#5</div>
+        <span class="tier-top">⭐ TOP PICK ≤ ₪3,000 · מומלץ</span>
+        <div class="price-pill">₪2,000/mo</div>
+      </div>
+
+      <div class="photo-section">
+        <a href="photos/6c30853c_0.jpg" target="_blank">
+          <img id="main-img-5" src="photos/6c30853c_0.jpg" class="main-photo" alt="Direct Sublet 5 Min Walk from the Beach — Rothschild St." loading="lazy"/>
+        </a>
+        <div class="thumbs-row"><img src="photos/6c30853c_0.jpg" class="thumb" onclick="document.getElementById('main-img-5').src='photos/6c30853c_0.jpg'" alt="Photo 1" loading="lazy"/><img src="photos/6c30853c_1.jpg" class="thumb" onclick="document.getElementById('main-img-5').src='photos/6c30853c_1.jpg'" alt="Photo 2" loading="lazy"/><img src="photos/6c30853c_2.jpg" class="thumb" onclick="document.getElementById('main-img-5').src='photos/6c30853c_2.jpg'" alt="Photo 3" loading="lazy"/></div>
+      </div>
+
+      <div class="bilingual-grid">
+        <!-- ENGLISH COLUMN -->
+        <div class="lang-col lang-en" dir="ltr">
+          <div class="lang-tag">🇬🇧 ENGLISH</div>
+          <h2 class="apt-title">Direct Sublet 5 Min Walk from the Beach — Rothschild St.</h2>
+          <div class="price-detail">₪2,000 / month (+ ~₪500 all bills = ~₪2,500 All-In)</div>
+          <div class="address-line">📍 <strong>Address:</strong> Rothschild St., Bat Yam (5 min walk from the beach)</div>
+          <div class="badges-wrap"><span class="badge badge-en">True Sublet</span><span class="badge badge-en">5 Min to Beach</span><span class="badge badge-en">Direct WhatsApp</span><span class="badge badge-en">No Checks</span></div>
+          <p class="why-box">Direct tenant sublet (zero checks, zero bureaucracy), cozy furnished apartment 5 minutes from Bat Yam beach. Direct WhatsApp available now.</p>
+          <div class="contact-line">👤 <strong>Contact:</strong> Sivan Zaudi (סיון זאודי) — <strong>053-9620132</strong></div>
+        </div>
+
+        <!-- HEBREW COLUMN -->
+        <div class="lang-col lang-he" dir="rtl">
+          <div class="lang-tag">🇮🇱 עברית</div>
+          <h2 class="apt-title">סאבלט ברחוב רוטשילד (5 דקות הליכה מהים), בת ים</h2>
+          <div class="price-detail">2,000 ₪ לחודש (+ כ-500 ₪ חשבונות הכל כלול)</div>
+          <div class="address-line">📍 <strong>כתובת:</strong> רחוב רוטשילד, בת ים (5 דקות הליכה מהים)</div>
+          <div class="badges-wrap"><span class="badge badge-he">סאבלט ישיר</span><span class="badge badge-he">5 דק' מהים</span><span class="badge badge-he">וואטסאפ ישיר</span><span class="badge badge-he">ללא צ'קים</span></div>
+          <p class="why-box">מסבטלת את החדר בבת ים רוטשילד 5 ד' הליכה מהים... אווירה ביתית וחמימה שכירות 2000 ש"ח וחשבונות 500+-</p>
+          <blockquote class="orig-quote">״מסבטלת את החדר בבת ים רוטשילד 5 ד' הליכה מהים... אווירה ביתית וחמימה שכירות 2000 ש"ח וחשבונות 500+-״</blockquote>
+          <div class="contact-line">👤 <strong>איש קשר:</strong> Sivan Zaudi (סיון זאודי) — <strong dir='ltr'>053-9620132</strong></div>
+        </div>
+      </div>
+
+      <div class="actions-bar">
+        
+        <a href="https://wa.me/972539620132?text=%D7%94%D7%99%D7%99%20%D7%A1%D7%99%D7%95%D7%9F%2C%20%D7%A8%D7%90%D7%99%D7%AA%D7%99%20%D7%90%D7%AA%20%D7%94%D7%A1%D7%90%D7%91%D7%9C%D7%98%20%D7%A9%D7%9C%D7%9A%20%D7%91%D7%A8%D7%95%D7%98%D7%A9%D7%99%D7%9C%D7%93%20%D7%91%D7%AA%20%D7%99%D7%9D.%20%D7%94%D7%90%D7%9D%20%D7%A8%D7%9C%D7%95%D7%95%D7%A0%D7%98%D7%99%20%D7%95%D7%90%D7%A4%D7%A9%D7%A8%20%D7%9C%D7%94%D7%99%D7%9B%D7%A0%D7%A1%20%D7%9B%D7%91%D7%A8%20%D7%94%D7%A9%D7%91%D7%95%D7%A2%20%D7%9C%D7%A4%D7%A0%D7%99%20%D7%99%D7%95%D7%9D%20%D7%A9%D7%9C%D7%99%D7%A9%D7%99%3F" target="_blank" rel="noopener" class="btn btn-wa">
+          💬 WhatsApp 053-9620132 · שלח וואטסאפ
+        </a>
+        <a href="tel:0539620132" class="btn btn-call">
+          📞 Call / חייג 053-9620132
+        </a>
+        
+        <a href="https://www.facebook.com/groups/101875683484689/posts/3043521049320123/" target="_blank" rel="noopener" class="btn btn-source">
+          🔗 Original Ad (Facebook Sublet Group) · מודעה מקורית
+        </a>
+        <a href="https://dorin.app/apartments/6c30853c-0596-4888-92fb-a3b49fe01b9c" target="_blank" rel="noopener" class="btn btn-dorin">
+          🔗 Dorin Card · כרטיס דירה
+        </a>
+      </div>
+    </article>
+    
+    <article class="apt-card" id="apt-6">
+      <div class="card-header">
+        <div class="rank-pill">#6</div>
+        <span class="tier-top">⭐ TOP PICK ≤ ₪3,000 · מומלץ</span>
+        <div class="price-pill">₪2,200/mo</div>
+      </div>
+
+      <div class="photo-section">
+        <a href="photos/f20a754b_0.jpg" target="_blank">
+          <img id="main-img-6" src="photos/f20a754b_0.jpg" class="main-photo" alt="Furnished Room with Private Balcony — Balfour 88 (9 Photos)" loading="lazy"/>
+        </a>
+        <div class="thumbs-row"><img src="photos/f20a754b_0.jpg" class="thumb" onclick="document.getElementById('main-img-6').src='photos/f20a754b_0.jpg'" alt="Photo 1" loading="lazy"/><img src="photos/f20a754b_1.jpg" class="thumb" onclick="document.getElementById('main-img-6').src='photos/f20a754b_1.jpg'" alt="Photo 2" loading="lazy"/><img src="photos/f20a754b_2.jpg" class="thumb" onclick="document.getElementById('main-img-6').src='photos/f20a754b_2.jpg'" alt="Photo 3" loading="lazy"/><img src="photos/f20a754b_3.jpg" class="thumb" onclick="document.getElementById('main-img-6').src='photos/f20a754b_3.jpg'" alt="Photo 4" loading="lazy"/></div>
+      </div>
+
+      <div class="bilingual-grid">
+        <!-- ENGLISH COLUMN -->
+        <div class="lang-col lang-en" dir="ltr">
+          <div class="lang-tag">🇬🇧 ENGLISH</div>
+          <h2 class="apt-title">Furnished Room with Private Balcony — Balfour 88 (9 Photos)</h2>
+          <div class="price-detail">₪2,200 / month — ALL BILLS INCLUDED</div>
+          <div class="address-line">📍 <strong>Address:</strong> Balfour 88, Central Bat Yam</div>
+          <div class="badges-wrap"><span class="badge badge-en">All Bills Included</span><span class="badge badge-en">Private Balcony</span><span class="badge badge-en">Fully Furnished</span><span class="badge badge-en">Immediate Entry</span></div>
+          <p class="why-box">Immediate entry, ₪2,200/month including all bills, fully furnished with balcony (shared with only 1 roommate).</p>
+          <div class="contact-line">👤 <strong>Contact:</strong> Tais Netanel (טאיס נתנאל) </div>
+        </div>
+
+        <!-- HEBREW COLUMN -->
+        <div class="lang-col lang-he" dir="rtl">
+          <div class="lang-tag">🇮🇱 עברית</div>
+          <h2 class="apt-title">חדר מרוהט עם מרפסת — בלפור 88, בת ים (כולל חשבונות)</h2>
+          <div class="price-detail">2,200 ₪ לחודש — כולל חשבונות וכל הריהוט</div>
+          <div class="address-line">📍 <strong>כתובת:</strong> בלפור 88, מרכז בת ים</div>
+          <div class="badges-wrap"><span class="badge badge-he">כולל חשבונות</span><span class="badge badge-he">מרפסת פרטית</span><span class="badge badge-he">מרוהט מלא</span><span class="badge badge-he">כניסה מיידית</span></div>
+          <p class="why-box">להשכרה חדר עם מרפסת בדירה 3 חדרים עם שותף 1 שכ"ד 2200 שח כולל חשבונות יש כל הרהוט</p>
+          <blockquote class="orig-quote">״להשכרה חדר עם מרפסת בדירה 3 חדרים עם שותף 1 שכ"ד 2200 שח כולל חשבונות יש כל הרהוט״</blockquote>
+          <div class="contact-line">👤 <strong>איש קשר:</strong> Tais Netanel (טאיס נתנאל) </div>
+        </div>
+      </div>
+
+      <div class="actions-bar">
+        
+        <a href="https://www.yad2.co.il/realestate/item/i6vv6o68" target="_blank" rel="noopener" class="btn btn-wa">
+          💬 Contact Tais Netanel (טאיס נתנאל) on Yad2 · יצירת קשר במודעה
+        </a>
+        
+        <a href="https://www.yad2.co.il/realestate/item/i6vv6o68" target="_blank" rel="noopener" class="btn btn-source">
+          🔗 Original Ad (Yad2) · מודעה מקורית
+        </a>
+        <a href="https://dorin.app/apartments/f20a754b-ccd7-4f17-8e85-6df10aa0768f" target="_blank" rel="noopener" class="btn btn-dorin">
+          🔗 Dorin Card · כרטיס דירה
+        </a>
+      </div>
+    </article>
+    
+    <article class="apt-card" id="apt-7">
+      <div class="card-header">
+        <div class="rank-pill">#7</div>
+        <span class="tier-top">⭐ TOP PICK ≤ ₪3,000 · מומלץ</span>
+        <div class="price-pill">₪3,000/mo</div>
+      </div>
+
+      <div class="photo-section">
+        <a href="photos/f6466a28_0.jpg" target="_blank">
+          <img id="main-img-7" src="photos/f6466a28_0.jpg" class="main-photo" alt="Full 3-Room Apartment (70 sqm) — Givati St., Bat Yam" loading="lazy"/>
+        </a>
+        <div class="thumbs-row"><img src="photos/f6466a28_0.jpg" class="thumb" onclick="document.getElementById('main-img-7').src='photos/f6466a28_0.jpg'" alt="Photo 1" loading="lazy"/><img src="photos/f6466a28_1.jpg" class="thumb" onclick="document.getElementById('main-img-7').src='photos/f6466a28_1.jpg'" alt="Photo 2" loading="lazy"/><img src="photos/f6466a28_2.jpg" class="thumb" onclick="document.getElementById('main-img-7').src='photos/f6466a28_2.jpg'" alt="Photo 3" loading="lazy"/><img src="photos/f6466a28_3.jpg" class="thumb" onclick="document.getElementById('main-img-7').src='photos/f6466a28_3.jpg'" alt="Photo 4" loading="lazy"/></div>
+      </div>
+
+      <div class="bilingual-grid">
+        <!-- ENGLISH COLUMN -->
+        <div class="lang-col lang-en" dir="ltr">
+          <div class="lang-tag">🇬🇧 ENGLISH</div>
+          <h2 class="apt-title">Full 3-Room Apartment (70 sqm) — Givati St., Bat Yam</h2>
+          <div class="price-detail">₪3,000 / month — Whole 3-Room Apartment (70 sqm) for Immediate Short-Term Savings</div>
+          <div class="address-line">📍 <strong>Address:</strong> Givati St. (HaShikma), Bat Yam (10 min walk to beach, near Light Rail)</div>
+          <div class="badges-wrap"><span class="badge badge-en">Whole 3-Room Apt</span><span class="badge badge-en">₪3,000 Only</span><span class="badge badge-en">Direct WhatsApp</span><span class="badge badge-en">Immediate Entry</span></div>
+          <p class="why-box">Entire 3-room apartment (70 sqm) for only ₪3,000/month because the building is finishing Tama 38 — explicitly advertised for anyone looking to save money for the upcoming period with immediate move-in!</p>
+          <div class="contact-line">👤 <strong>Contact:</strong> Roman Eylon (רומן אילון) — <strong>052-8555977</strong></div>
+        </div>
+
+        <!-- HEBREW COLUMN -->
+        <div class="lang-col lang-he" dir="rtl">
+          <div class="lang-tag">🇮🇱 עברית</div>
+          <h2 class="apt-title">דירת 3 חדרים מרווחת (70 מ"ר) — רחוב גבעתי, בת ים (3,000 ₪ בלבד)</h2>
+          <div class="price-detail">3,000 ₪ לחודש בלבד — דירת 3 חדרים שלמה (70 מ"ר) לכניסה מיידית</div>
+          <div class="address-line">📍 <strong>כתובת:</strong> רחוב גבעתי, בת ים (10 דקות הליכה מהים, קרוב לרכבת הקלה)</div>
+          <div class="badges-wrap"><span class="badge badge-he">דירת 3 חד' שלמה</span><span class="badge badge-he">3,000 ₪ בלבד</span><span class="badge badge-he">וואטסאפ ישיר</span><span class="badge badge-he">כניסה מיידית</span></div>
+          <p class="why-box">מתאים לכל מי שרוצה לחסוך כסף לתקופה הקרובה! במחיר 3000 ש"ח בלבד! כניסה מיידית! דירת 3 חדרים 70 מטר מרווחת</p>
+          <blockquote class="orig-quote">״מתאים לכל מי שרוצה לחסוך כסף לתקופה הקרובה! במחיר 3000 ש"ח בלבד! כניסה מיידית! דירת 3 חדרים 70 מטר מרווחת״</blockquote>
+          <div class="contact-line">👤 <strong>איש קשר:</strong> Roman Eylon (רומן אילון) — <strong dir='ltr'>052-8555977</strong></div>
+        </div>
+      </div>
+
+      <div class="actions-bar">
+        
+        <a href="https://wa.me/972528555977?text=%D7%94%D7%99%D7%99%20%D7%A8%D7%95%D7%9E%D7%9F%2C%20%D7%A8%D7%90%D7%99%D7%AA%D7%99%20%D7%90%D7%AA%20%D7%94%D7%9E%D7%95%D7%93%D7%A2%D7%94%20%D7%9C%D7%93%D7%99%D7%A8%D7%94%20%D7%91%D7%A8%D7%97%D7%95%D7%91%20%D7%92%D7%91%D7%A2%D7%AA%D7%99%20%D7%91%D7%AA%20%D7%99%D7%9D%20(3000%20%D7%A9%D7%97).%20%D7%90%D7%A0%D7%99%20%D7%9E%D7%97%D7%A4%D7%A9%20%D7%9B%D7%A0%D7%99%D7%A1%D7%94%20%D7%9E%D7%99%D7%99%D7%93%D7%99%D7%AA%20%D7%9C%D7%A4%D7%A0%D7%99%20%D7%99%D7%95%D7%9D%20%D7%A9%D7%9C%D7%99%D7%A9%D7%99%20%D7%A2%D7%9D%20%D7%AA%D7%A9%D7%9C%D7%95%D7%9D%20%D7%9E%D7%A8%D7%90%D7%A9%20(%D7%9C%D7%9C%D7%90%20%D7%A6%27%D7%A7%D7%99%D7%9D).%20%D7%90%D7%A4%D7%A9%D7%A8%20%D7%9C%D7%A8%D7%90%D7%95%D7%AA%20%D7%94%D7%99%D7%95%D7%9D%3F" target="_blank" rel="noopener" class="btn btn-wa">
+          💬 WhatsApp 052-8555977 · שלח וואטסאפ
+        </a>
+        <a href="tel:0528555977" class="btn btn-call">
+          📞 Call / חייג 052-8555977
+        </a>
+        
+        <a href="https://www.facebook.com/groups/201105170260427/posts/2942598629444387/" target="_blank" rel="noopener" class="btn btn-source">
+          🔗 Original Ad (Facebook Group) · מודעה מקורית
+        </a>
+        <a href="https://dorin.app/apartments/f6466a28-a34a-40f9-9108-0cf50f0b5676" target="_blank" rel="noopener" class="btn btn-dorin">
+          🔗 Dorin Card · כרטיס דירה
+        </a>
+      </div>
+    </article>
+    
+    <article class="apt-card" id="apt-8">
+      <div class="card-header">
+        <div class="rank-pill">#8</div>
+        <span class="tier-bonus">🔥 BONUS DIRECT · נוסף</span>
+        <div class="price-pill">₪3,000/mo</div>
+      </div>
+
+      <div class="photo-section">
+        <a href="photos/f043b54e_0.jpg" target="_blank">
+          <img id="main-img-8" src="photos/f043b54e_0.jpg" class="main-photo" alt="Dedicated Short-Term Apartment (1–6 Months) — Rova Ayalon, Bat Yam" loading="lazy"/>
+        </a>
+        
+      </div>
+
+      <div class="bilingual-grid">
+        <!-- ENGLISH COLUMN -->
+        <div class="lang-col lang-en" dir="ltr">
+          <div class="lang-tag">🇬🇧 ENGLISH</div>
+          <h2 class="apt-title">Dedicated Short-Term Apartment (1–6 Months) — Rova Ayalon, Bat Yam</h2>
+          <div class="price-detail">Short-Term Sublet (1 to 6 Months) — Furnished Option</div>
+          <div class="address-line">📍 <strong>Address:</strong> Rova Ayalon, Bat Yam (24/7 security, private parking, balcony)</div>
+          <div class="badges-wrap"><span class="badge badge-en">1–6 Months Sublet</span><span class="badge badge-en">Furnished Option</span><span class="badge badge-en">Direct WhatsApp</span><span class="badge badge-en">Parking + Security</span></div>
+          <p class="why-box">Explicitly rented for short periods from 1 month to 6 months, can be provided furnished. Direct WhatsApp with owner Erez.</p>
+          <div class="contact-line">👤 <strong>Contact:</strong> Erez Nahom (ארז נחום) — <strong>052-2424676</strong></div>
+        </div>
+
+        <!-- HEBREW COLUMN -->
+        <div class="lang-col lang-he" dir="rtl">
+          <div class="lang-tag">🇮🇱 עברית</div>
+          <h2 class="apt-title">דירה לתקופות קצרות (חודש עד חצי שנה) — רובע איילון, בת ים</h2>
+          <div class="price-detail">להשכרה לתקופות קצרות (מחודש ועד חצי שנה) — אפשרות למרוהט</div>
+          <div class="address-line">📍 <strong>כתובת:</strong> רובע איילון, בת ים (שומר 24/7, חניה פרטית, מרפסת שמש)</div>
+          <div class="badges-wrap"><span class="badge badge-he">חודש עד חצי שנה</span><span class="badge badge-he">אפשרות למרוהט</span><span class="badge badge-he">וואטסאפ ישיר</span><span class="badge badge-he">חניה ושומר</span></div>
+          <p class="why-box">להשכרה לתקופות קצרות מחודש ועד חצי שנה ברובע איילון המבוקש בבת ים... ניתן לקבל גם מרוהט</p>
+          <blockquote class="orig-quote">״להשכרה לתקופות קצרות מחודש ועד חצי שנה ברובע איילון המבוקש בבת ים... ניתן לקבל גם מרוהט״</blockquote>
+          <div class="contact-line">👤 <strong>איש קשר:</strong> Erez Nahom (ארז נחום) — <strong dir='ltr'>052-2424676</strong></div>
+        </div>
+      </div>
+
+      <div class="actions-bar">
+        
+        <a href="https://wa.me/972522424676?text=%D7%94%D7%99%D7%99%20%D7%90%D7%A8%D7%96%2C%20%D7%A8%D7%90%D7%99%D7%AA%D7%99%20%D7%90%D7%AA%20%D7%94%D7%9E%D7%95%D7%93%D7%A2%D7%94%20%D7%9C%D7%93%D7%99%D7%A8%D7%94%20%D7%9C%D7%AA%D7%A7%D7%95%D7%A4%D7%94%20%D7%A7%D7%A6%D7%A8%D7%94%20%D7%91%D7%91%D7%AA%20%D7%99%D7%9D.%20%D7%90%D7%A0%D7%99%20%D7%A6%D7%A8%D7%99%D7%9A%20%D7%9C%D7%94%D7%99%D7%9B%D7%A0%D7%A1%20%D7%9C%D7%A4%D7%A0%D7%99%20%D7%99%D7%95%D7%9D%20%D7%A9%D7%9C%D7%99%D7%A9%D7%99%20(%D7%AA%D7%A9%D7%9C%D7%95%D7%9D%20%D7%9E%D7%A8%D7%90%D7%A9%20%D7%9C%D7%9C%D7%90%20%D7%A6%27%D7%A7%D7%99%D7%9D).%20%D7%90%D7%A4%D7%A9%D7%A8%20%D7%9C%D7%A9%D7%9E%D7%95%D7%A2%20%D7%A4%D7%A8%D7%98%D7%99%D7%9D%3F" target="_blank" rel="noopener" class="btn btn-wa">
+          💬 WhatsApp 052-2424676 · שלח וואטסאפ
+        </a>
+        <a href="tel:0522424676" class="btn btn-call">
+          📞 Call / חייג 052-2424676
+        </a>
+        
+        <a href="https://www.facebook.com/groups/947480955363028/posts/28386559071028513/" target="_blank" rel="noopener" class="btn btn-source">
+          🔗 Original Ad (Facebook Group) · מודעה מקורית
+        </a>
+        <a href="https://dorin.app/apartments/f043b54e-b8d9-417b-86e1-c810dd8a3f8e" target="_blank" rel="noopener" class="btn btn-dorin">
+          🔗 Dorin Card · כרטיס דירה
+        </a>
+      </div>
+    </article>
+    
+    <article class="apt-card" id="apt-9">
+      <div class="card-header">
+        <div class="rank-pill">#9</div>
+        <span class="tier-bonus">🔥 BONUS DIRECT · נוסף</span>
+        <div class="price-pill">₪2,900/mo</div>
+      </div>
+
+      <div class="photo-section">
+        <a href="photos/1398a8e7_0.jpg" target="_blank">
+          <img id="main-img-9" src="photos/1398a8e7_0.jpg" class="main-photo" alt="Private Housing Unit Adjacent to Light Rail — Kinamon St." loading="lazy"/>
+        </a>
+        <div class="thumbs-row"><img src="photos/1398a8e7_0.jpg" class="thumb" onclick="document.getElementById('main-img-9').src='photos/1398a8e7_0.jpg'" alt="Photo 1" loading="lazy"/><img src="photos/1398a8e7_1.jpg" class="thumb" onclick="document.getElementById('main-img-9').src='photos/1398a8e7_1.jpg'" alt="Photo 2" loading="lazy"/><img src="photos/1398a8e7_2.jpg" class="thumb" onclick="document.getElementById('main-img-9').src='photos/1398a8e7_2.jpg'" alt="Photo 3" loading="lazy"/></div>
+      </div>
+
+      <div class="bilingual-grid">
+        <!-- ENGLISH COLUMN -->
+        <div class="lang-col lang-en" dir="ltr">
+          <div class="lang-tag">🇬🇧 ENGLISH</div>
+          <h2 class="apt-title">Private Housing Unit Adjacent to Light Rail — Kinamon St.</h2>
+          <div class="price-detail">Housing Unit (יחידת דיור) — Immediate Entry, No Broker</div>
+          <div class="address-line">📍 <strong>Address:</strong> Kinamon St., Bat Yam (Steps from Light Rail & Shopping Mall)</div>
+          <div class="badges-wrap"><span class="badge badge-en">Housing Unit (Yehidat Diur)</span><span class="badge badge-en">No Broker</span><span class="badge badge-en">Direct WhatsApp</span><span class="badge badge-en">Immediate Entry</span></div>
+          <p class="why-box">Private housing unit (יחידת דיור) — typically includes taxes and requires no bank checks. Immediate entry, no broker fee.</p>
+          <div class="contact-line">👤 <strong>Contact:</strong> Shai (שי) — <strong>054-2474592</strong></div>
+        </div>
+
+        <!-- HEBREW COLUMN -->
+        <div class="lang-col lang-he" dir="rtl">
+          <div class="lang-tag">🇮🇱 עברית</div>
+          <h2 class="apt-title">יחידת דיור צמודה לרכבת הקלה — רחוב קינמון, בת ים</h2>
+          <div class="price-detail">יחידת דיור ברחוב קינמון — כניסה מיידית ללא תיווך</div>
+          <div class="address-line">📍 <strong>כתובת:</strong> רחוב קינמון, בת ים (צמוד לרכבת הקלה ולקניון בת ים)</div>
+          <div class="badges-wrap"><span class="badge badge-he">יחידת דיור</span><span class="badge badge-he">ללא תיווך</span><span class="badge badge-he">וואטסאפ ישיר</span><span class="badge badge-he">כניסה מיידית</span></div>
+          <p class="why-box">להשכרה ללא תיווך יחידת דיור ברחוב קינמון בת ים, צמוד לרכבת הקלה, קרוב לקניון, כניסה מיידית.</p>
+          <blockquote class="orig-quote">״להשכרה ללא תיווך יחידת דיור ברחוב קינמון בת ים, צמוד לרכבת הקלה, קרוב לקניון, כניסה מיידית. לפרטים: שי - 054-2474592״</blockquote>
+          <div class="contact-line">👤 <strong>איש קשר:</strong> Shai (שי) — <strong dir='ltr'>054-2474592</strong></div>
+        </div>
+      </div>
+
+      <div class="actions-bar">
+        
+        <a href="https://wa.me/972542474592?text=%D7%94%D7%99%D7%99%20%D7%A9%D7%99%2C%20%D7%A8%D7%90%D7%99%D7%AA%D7%99%20%D7%90%D7%AA%20%D7%94%D7%9E%D7%95%D7%93%D7%A2%D7%94%20%D7%9C%D7%99%D7%97%D7%99%D7%93%D7%AA%20%D7%93%D7%99%D7%95%D7%A8%20%D7%91%D7%A8%D7%97%D7%95%D7%91%20%D7%A7%D7%99%D7%A0%D7%9E%D7%95%D7%9F%20%D7%91%D7%AA%20%D7%99%D7%9D.%20%D7%9E%D7%94%20%D7%94%D7%9E%D7%97%D7%99%D7%A8%20%D7%95%D7%94%D7%90%D7%9D%20%D7%90%D7%A4%D7%A9%D7%A8%20%D7%9C%D7%94%D7%99%D7%9B%D7%A0%D7%A1%20%D7%9C%D7%A4%D7%A0%D7%99%20%D7%99%D7%95%D7%9D%20%D7%A9%D7%9C%D7%99%D7%A9%D7%99%20%D7%9C%D7%9C%D7%90%20%D7%A6%27%D7%A7%D7%99%D7%9D%3F" target="_blank" rel="noopener" class="btn btn-wa">
+          💬 WhatsApp 054-2474592 · שלח וואטסאפ
+        </a>
+        <a href="tel:0542474592" class="btn btn-call">
+          📞 Call / חייג 054-2474592
+        </a>
+        
+        <a href="https://www.facebook.com/groups/947480955363028/posts/28777554475262302/" target="_blank" rel="noopener" class="btn btn-source">
+          🔗 Original Ad (Facebook Group) · מודעה מקורית
+        </a>
+        <a href="https://dorin.app/apartments/1398a8e7-013a-4512-8465-2c31d2325019" target="_blank" rel="noopener" class="btn btn-dorin">
+          🔗 Dorin Card · כרטיס דירה
+        </a>
+      </div>
+    </article>
+    
+    <article class="apt-card" id="apt-10">
+      <div class="card-header">
+        <div class="rank-pill">#10</div>
+        <span class="tier-bonus">🔥 BONUS DIRECT · נוסף</span>
+        <div class="price-pill">₪3,000/mo</div>
+      </div>
+
+      <div class="photo-section">
+        <a href="photos/e6df8b11_0.jpg" target="_blank">
+          <img id="main-img-10" src="photos/e6df8b11_0.jpg" class="main-photo" alt="Palei Apartments — Short-Term Seafront Studio (Park HaYam)" loading="lazy"/>
+        </a>
+        
+      </div>
+
+      <div class="bilingual-grid">
+        <!-- ENGLISH COLUMN -->
+        <div class="lang-col lang-en" dir="ltr">
+          <div class="lang-tag">🇬🇧 ENGLISH</div>
+          <h2 class="apt-title">Palei Apartments — Short-Term Seafront Studio (Park HaYam)</h2>
+          <div class="price-detail">Short-Term Seafront Studio — Zero Israeli Checks Required</div>
+          <div class="address-line">📍 <strong>Address:</strong> Park HaYam, Bat Yam (Steps from the beach)</div>
+          <div class="badges-wrap"><span class="badge badge-en">Short-Term Studio</span><span class="badge badge-en">Seafront</span><span class="badge badge-en">Direct WhatsApp</span><span class="badge badge-en">Instagram + Telegram</span></div>
+          <p class="why-box">Short-term sublet operator (@palei_apartaments on Instagram / @SubletApartaments on Telegram). Rents furnished studios by the week/month with cash/transfer, zero Israeli bank checks.</p>
+          <div class="contact-line">👤 <strong>Contact:</strong> Andrey Sokach (@palei_apartaments) — <strong>+972-52-321-1155</strong></div>
+        </div>
+
+        <!-- HEBREW COLUMN -->
+        <div class="lang-col lang-he" dir="rtl">
+          <div class="lang-tag">🇮🇱 עברית</div>
+          <h2 class="apt-title">סטודיו מרוהט לטווח קצר ליד הים — פארק הים, בת ים</h2>
+          <div class="price-detail">סטודיו לטווח קצר ליד הים — ללא צ'קים (פארק הים, בת ים)</div>
+          <div class="address-line">📍 <strong>כתובת:</strong> פארק הים, בת ים (צמוד לחוף הים)</div>
+          <div class="badges-wrap"><span class="badge badge-he">סטודיו לטווח קצר</span><span class="badge badge-he">ליד הים</span><span class="badge badge-he">וואטסאפ ישיר</span><span class="badge badge-he">ללא צ'קים</span></div>
+          <p class="why-box">השכרת דירות סטודיו לטווח קצר ליד הים בבת ים, מצוידות ומרוהטות במלואן, ללא צורך בצ'קים או ערבים.</p>
+          <blockquote class="orig-quote">״Аренда квартиры на короткий срок — Студия возле моря, Бат-Ям. В квартире есть все необходимое для комфортного проживания.״</blockquote>
+          <div class="contact-line">👤 <strong>איש קשר:</strong> Andrey Sokach (@palei_apartaments) — <strong dir='ltr'>+972-52-321-1155</strong></div>
+        </div>
+      </div>
+
+      <div class="actions-bar">
+        
+        <a href="https://wa.me/972523211155?text=Hi%20Andrey%2C%20I%20saw%20your%20short-term%20studio%20in%20Bat%20Yam.%20I%20need%20to%20move%20in%20before%20Tuesday%20(cash%2Fbank%20transfer%2C%20no%20checks).%20Is%20it%20available%3F" target="_blank" rel="noopener" class="btn btn-wa">
+          💬 WhatsApp +972-52-321-1155 · שלח וואטסאפ
+        </a>
+        <a href="tel:+972523211155" class="btn btn-call">
+          📞 Call / חייג +972-52-321-1155
+        </a>
+        
+        <a href="https://www.facebook.com/groups/963153170558917/posts/3196366510570894/" target="_blank" rel="noopener" class="btn btn-source">
+          🔗 Original Ad (Facebook / Instagram) · מודעה מקורית
+        </a>
+        <a href="https://dorin.app/apartments/e6df8b11-d65c-4f57-a053-2507e891902e" target="_blank" rel="noopener" class="btn btn-dorin">
+          🔗 Dorin Card · כרטיס דירה
+        </a>
+      </div>
+    </article>
+    
+    <article class="apt-card" id="apt-11">
+      <div class="card-header">
+        <div class="rank-pill">#11</div>
+        <span class="tier-bonus">🔥 BONUS DIRECT · נוסף</span>
+        <div class="price-pill">₪3,000/mo</div>
+      </div>
+
+      <div class="photo-section">
+        <a href="photos/639c468d_0.jpg" target="_blank">
+          <img id="main-img-11" src="photos/639c468d_0.jpg" class="main-photo" alt="2.5-Room Apartment (70 sqm) — Bar Yehuda 3, Bat Yam" loading="lazy"/>
+        </a>
+        <div class="thumbs-row"><img src="photos/639c468d_0.jpg" class="thumb" onclick="document.getElementById('main-img-11').src='photos/639c468d_0.jpg'" alt="Photo 1" loading="lazy"/><img src="photos/639c468d_1.jpg" class="thumb" onclick="document.getElementById('main-img-11').src='photos/639c468d_1.jpg'" alt="Photo 2" loading="lazy"/></div>
+      </div>
+
+      <div class="bilingual-grid">
+        <!-- ENGLISH COLUMN -->
+        <div class="lang-col lang-en" dir="ltr">
+          <div class="lang-tag">🇬🇧 ENGLISH</div>
+          <h2 class="apt-title">2.5-Room Apartment (70 sqm) — Bar Yehuda 3, Bat Yam</h2>
+          <div class="price-detail">₪3,000 / month — 2.5-Room Apartment (70 sqm), No Broker</div>
+          <div class="address-line">📍 <strong>Address:</strong> Bar Yehuda 3, Bat Yam (1 min from Light Rail, 10 min from Beach)</div>
+          <div class="badges-wrap"><span class="badge badge-en">₪3,000 / month</span><span class="badge badge-en">70 sqm</span><span class="badge badge-en">1 Min to Light Rail</span><span class="badge badge-en">Immediate Entry</span></div>
+          <p class="why-box">Spacious 70 sqm apartment for ₪3,000/month, partially furnished, shelter in building, immediate entry, no broker fee.</p>
+          <div class="contact-line">👤 <strong>Contact:</strong> Ahmad Magdoub (אחמד מגדוב) </div>
+        </div>
+
+        <!-- HEBREW COLUMN -->
+        <div class="lang-col lang-he" dir="rtl">
+          <div class="lang-tag">🇮🇱 עברית</div>
+          <h2 class="apt-title">דירת 2.5 חדרים (70 מ"ר) — בר יהודה 3, בת ים</h2>
+          <div class="price-detail">3,000 ₪ לחודש — דירת 2.5 חדרים (70 מ"ר), ללא תיווך, כניסה מיידית</div>
+          <div class="address-line">📍 <strong>כתובת:</strong> בר יהודה 3, בת ים (דקה מהרכבת הקלה, 10 דק' מהים)</div>
+          <div class="badges-wrap"><span class="badge badge-he">3,000 ₪ לחודש</span><span class="badge badge-he">70 מ"ר</span><span class="badge badge-he">דקה מהרכבת הקלה</span><span class="badge badge-he">כניסה מיידית</span></div>
+          <p class="why-box">דירה מרווחת עם סלון גדול, מרפסת שירות ומקלט בבניין. דקה הליכה מתחנת הרכבת הקלה ו-10 דקות מהים. מרוהטת חלקית.</p>
+          <blockquote class="orig-quote">״דירה מרווחת עם סלון גדול, מרפסת שירות ומקלט בבניין. דקה הליכה מתחנת הרכבת הקלה ו-10 דקות מהים. מרוהטת חלקית.״</blockquote>
+          <div class="contact-line">👤 <strong>איש קשר:</strong> Ahmad Magdoub (אחמד מגדוב) </div>
+        </div>
+      </div>
+
+      <div class="actions-bar">
+        
+        <a href="https://www.yad2.co.il/realestate/item/ymth4hcu" target="_blank" rel="noopener" class="btn btn-wa">
+          💬 Contact Ahmad Magdoub (אחמד מגדוב) on Yad2 / OnMap · יצירת קשר במודעה
+        </a>
+        
+        <a href="https://www.yad2.co.il/realestate/item/ymth4hcu" target="_blank" rel="noopener" class="btn btn-source">
+          🔗 Original Ad (Yad2 / OnMap) · מודעה מקורית
+        </a>
+        <a href="https://dorin.app/apartments/639c468d-d834-4400-8096-68feaa278b22" target="_blank" rel="noopener" class="btn btn-dorin">
+          🔗 Dorin Card · כרטיס דירה
+        </a>
+      </div>
+    </article>
+    
+    <article class="apt-card" id="apt-12">
+      <div class="card-header">
+        <div class="rank-pill">#12</div>
+        <span class="tier-bonus">🔥 BONUS DIRECT · נוסף</span>
+        <div class="price-pill">₪3,100/mo</div>
+      </div>
+
+      <div class="photo-section">
+        <a href="photos/58ea45e4_0.jpg" target="_blank">
+          <img id="main-img-12" src="photos/58ea45e4_0.jpg" class="main-photo" alt="2-Room Apartment (Partially Furnished) — Eilat 13, Bat Yam" loading="lazy"/>
+        </a>
+        <div class="thumbs-row"><img src="photos/58ea45e4_0.jpg" class="thumb" onclick="document.getElementById('main-img-12').src='photos/58ea45e4_0.jpg'" alt="Photo 1" loading="lazy"/><img src="photos/58ea45e4_1.jpg" class="thumb" onclick="document.getElementById('main-img-12').src='photos/58ea45e4_1.jpg'" alt="Photo 2" loading="lazy"/><img src="photos/58ea45e4_2.jpg" class="thumb" onclick="document.getElementById('main-img-12').src='photos/58ea45e4_2.jpg'" alt="Photo 3" loading="lazy"/><img src="photos/58ea45e4_3.jpg" class="thumb" onclick="document.getElementById('main-img-12').src='photos/58ea45e4_3.jpg'" alt="Photo 4" loading="lazy"/></div>
+      </div>
+
+      <div class="bilingual-grid">
+        <!-- ENGLISH COLUMN -->
+        <div class="lang-col lang-en" dir="ltr">
+          <div class="lang-tag">🇬🇧 ENGLISH</div>
+          <h2 class="apt-title">2-Room Apartment (Partially Furnished) — Eilat 13, Bat Yam</h2>
+          <div class="price-detail">₪3,100 / month — 2-Room Apartment, Central Bat Yam</div>
+          <div class="address-line">📍 <strong>Address:</strong> Eilat 13, Central Bat Yam (Quiet area near shopping & transit)</div>
+          <div class="badges-wrap"><span class="badge badge-en">2 Rooms</span><span class="badge badge-en">Direct WhatsApp</span><span class="badge badge-en">No Broker</span><span class="badge badge-en">Immediate Entry</span></div>
+          <p class="why-box">Immediate entry 2-room apartment in central Bat Yam, direct owner phone number, no broker.</p>
+          <div class="contact-line">👤 <strong>Contact:</strong> David (דויד) — <strong>054-5655206</strong></div>
+        </div>
+
+        <!-- HEBREW COLUMN -->
+        <div class="lang-col lang-he" dir="rtl">
+          <div class="lang-tag">🇮🇱 עברית</div>
+          <h2 class="apt-title">דירת 2 חדרים מרוהטת חלקית — אילת 13, בת ים</h2>
+          <div class="price-detail">3,100 ₪ לחודש — דירת 2 חדרים במרכז בת ים (אילת 13)</div>
+          <div class="address-line">📍 <strong>כתובת:</strong> אילת 13, מרכז בת ים (אזור שקט קרוב למרכזי קניות ותחבורה)</div>
+          <div class="badges-wrap"><span class="badge badge-he">2 חדרים</span><span class="badge badge-he">וואטסאפ ישיר</span><span class="badge badge-he">ללא תיווך</span><span class="badge badge-he">כניסה מיידית</span></div>
+          <p class="why-box">במרכז בת ים ברחוב אילת 13 השקט דירת 2 חדרים מרוהטת חלקית שמורה ומסודרת קומה 4 כניסה מיידית</p>
+          <blockquote class="orig-quote">״במרכז בת ים ברחוב אילת 13 השקט דירת 2 חדרים מרוהטת חלקית שמורה ומסודרת קומה 4 כניסה מיידית. דויד - 0545655206״</blockquote>
+          <div class="contact-line">👤 <strong>איש קשר:</strong> David (דויד) — <strong dir='ltr'>054-5655206</strong></div>
+        </div>
+      </div>
+
+      <div class="actions-bar">
+        
+        <a href="https://wa.me/972545655206?text=%D7%94%D7%99%D7%99%20%D7%93%D7%95%D7%99%D7%93%2C%20%D7%A8%D7%90%D7%99%D7%AA%D7%99%20%D7%90%D7%AA%20%D7%94%D7%9E%D7%95%D7%93%D7%A2%D7%94%20%D7%9C%D7%93%D7%99%D7%A8%D7%94%20%D7%91%D7%90%D7%99%D7%9C%D7%AA%2013%20%D7%91%D7%AA%20%D7%99%D7%9D.%20%D7%90%D7%A4%D7%A9%D7%A8%20%D7%9C%D7%91%D7%95%D7%90%20%D7%9C%D7%A8%D7%90%D7%95%D7%AA%20%D7%94%D7%99%D7%95%D7%9D%20%D7%9C%D7%9B%D7%A0%D7%99%D7%A1%D7%94%20%D7%9C%D7%A4%D7%A0%D7%99%20%D7%99%D7%95%D7%9D%20%D7%A9%D7%9C%D7%99%D7%A9%D7%99%3F" target="_blank" rel="noopener" class="btn btn-wa">
+          💬 WhatsApp 054-5655206 · שלח וואטסאפ
+        </a>
+        <a href="tel:0545655206" class="btn btn-call">
+          📞 Call / חייג 054-5655206
+        </a>
+        
+        <a href="https://www.facebook.com/groups/947480955363028/posts/28806916012326148/" target="_blank" rel="noopener" class="btn btn-source">
+          🔗 Original Ad (Facebook Group) · מודעה מקורית
+        </a>
+        <a href="https://dorin.app/apartments/58ea45e4-5b6a-4e1c-b1b7-d9263ac900df" target="_blank" rel="noopener" class="btn btn-dorin">
+          🔗 Dorin Card · כרטיס דירה
+        </a>
+      </div>
+    </article>
+    
+  </main>
+</body>
+</html>
