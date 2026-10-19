@@ -463,6 +463,11 @@ index_html = f'''<!DOCTYPE html>
 </html>
 '''
 
+# Menu commun du site unique (ajout 20/10 : fusion avec la page planning)
+_nav_f = os.path.join(BASE, "nav_commun.html")
+if os.path.exists(_nav_f):
+    import re as _re
+    index_html = _re.sub(r'(<body[^>]*>)', lambda m: m.group(1) + open(_nav_f).read(), index_html, count=1)
 with open(os.path.join(BASE, "index.html"), "w", encoding="utf-8") as f:
     f.write(index_html)
 
