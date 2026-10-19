@@ -437,8 +437,9 @@ index_html = f'''<!DOCTYPE html>
     </p>
     <div class="top-bar">
       <a href="bat-yam-sublets-en-he.pdf" target="_blank" class="btn btn-pdf">
-        📄 Download Bilingual PDF (EN + עברית) · הורדת קובץ PDF מלא
+        📄 PDF (EN + עברית)
       </a>
+      <a href="contacts.html" class="btn" style="background:#2563eb;color:#fff">📋 Contact report · דוח קשרים</a>
       <button class="lang-switch" onclick="document.body.className=''">🇬🇧 + 🇮🇱 Both Languages (דו-לשוני)</button>
       <button class="lang-switch" onclick="document.body.className='mode-en'">🇬🇧 English Only</button>
       <button class="lang-switch" onclick="document.body.className='mode-he'">🇮🇱 עברית בלבד</button>
