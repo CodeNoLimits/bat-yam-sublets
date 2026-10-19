@@ -21,7 +21,20 @@ now_str = datetime.now().strftime("%Y-%m-%d %H:%M (Israel Time)")
 
 # Build cards HTML for index.html
 cards_html = []
+def _group(a):
+    st = a.get("wa_status_en", "")
+    if a.get("tier") == "TOP": return ("contact", "✅ In contact — visits & live chats", "✅ בקשר — ביקורים ושיחות פעילות")
+    if "📩" in st: return ("sent", "📩 WhatsApp sent tonight — waiting for answer", "📩 נשלחה הודעת וואטסאפ הלילה — ממתינים לתשובה")
+    if "📞" in st: return ("call", "📞 To call Monday morning — Yad2 virtual lines (no WhatsApp)", "📞 להתקשר ביום שני בבוקר — קווים וירטואליים של יד2 (בלי וואטסאפ)")
+    return ("other", "🔥 Other leads", "🔥 הזדמנויות נוספות")
+_counts = {}
+for a in apts: _counts[_group(a)[0]] = _counts.get(_group(a)[0], 0) + 1
+_prev = None
 for a in apts:
+    g = _group(a)
+    if g[0] != _prev:
+        _prev = g[0]
+        cards_html.append(f'<h2 class="section-h" id="sec-{g[0]}"><span class="en">{g[1]} ({_counts[g[0]]})</span><span class="he">{g[2]} ({_counts[g[0]]})</span></h2>')
     photos = a["photos"]
     main_photo = photos[0] if photos else ""
     thumbs_html = ""
@@ -122,6 +135,10 @@ index_html = f'''<!DOCTYPE html>
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta property="og:title" content="Bat Yam & Holon ≤ ₪3,500 — David & Leeya — visits 20/10" />
+  <meta property="og:description" content="43 real Yad2 listings, phones, photos, visits plan. English + Hebrew." />
+  <meta property="og:image" content="https://codenolimits.github.io/bat-yam-sublets/hero.jpg" />
+  <meta property="og:type" content="website" />
   <title>Bat Yam & Holon ≤ ₪3,500 — visits 20/10 | דירות בבת ים וחולון עד 3,500 ₪ — ביקורים 20/10</title>
   <style>
     :root {{
@@ -159,6 +176,13 @@ index_html = f'''<!DOCTYPE html>
       color: #e0f2fe;
       direction: rtl;
     }}
+    .hero {{ background: linear-gradient(180deg, rgba(8,20,40,.55), rgba(8,20,40,.85)), url('hero.jpg') center/cover no-repeat; }}
+    .section-h {{ margin: 28px 0 10px; font-size: 1.25rem; color: #fbbf24; display:flex; justify-content:space-between; gap:12px; flex-wrap:wrap; border-bottom: 2px solid #fbbf24; padding-bottom: 6px; }}
+    .section-h .he {{ direction: rtl; }}
+    body.mode-en .section-h .he, body.mode-he .section-h .en {{ display:none; }}
+    .video-box {{ max-width: 1100px; margin: 18px auto 0; padding: 0 16px; }}
+    .video-box video {{ width: 100%; border-radius: 14px; box-shadow: 0 8px 30px rgba(0,0,0,.45); background:#000; }}
+    .video-box p {{ color:#cbd5e1; text-align:center; margin:8px 0 0; }}
     .hero-sub {{
       max-width: 820px;
       margin: 0 auto 16px;
@@ -409,7 +433,7 @@ index_html = f'''<!DOCTYPE html>
     <h1>🏖️ Bat Yam & Holon ≤ ₪3,500 — 6 months, all-inclusive, near Yoseftal light rail · visits Monday 20/10</h1>
     <h2>דירות בבת ים וחולון עד 3,500 ₪ — חצי שנה, כולל הכל, ליד תחנת יוספטל · ביקורים יום שני 20/10</h2>
     <p class="hero-sub">
-      Prepared for <strong>David & Leeya</strong> · Verified Live Listings from Facebook Sublet Groups, Yad2, Dorin, Glotels & Israela · Direct WhatsApp & Original Links Included
+      Prepared for <strong>David & Leeya</strong> · 43 real private listings from Yad2 (Bat Yam + Holon), phones, photos, visit plan · <span dir="rtl">מוכן לדוד וליה · 43 מודעות פרטיות אמיתיות מיד2, טלפונים, תמונות ותוכנית ביקורים</span>
     </p>
     <div class="top-bar">
       <a href="bat-yam-sublets-en-he.pdf" target="_blank" class="btn btn-pdf">
@@ -420,6 +444,11 @@ index_html = f'''<!DOCTYPE html>
       <button class="lang-switch" onclick="document.body.className='mode-he'">🇮🇱 עברית בלבד</button>
     </div>
   </header>
+
+  <div class="video-box">
+    <video controls playsinline preload="metadata" poster="hero.jpg" src="plan-en.mp4"></video>
+    <p>🎬 2-minute video: the Monday plan (English) · <a href="plan-en.mp3" style="color:#93c5fd">MP3</a> · <span dir="rtl">סרטון של 2 דקות: התוכנית ליום שני (אנגלית)</span></p>
+  </div>
 
   <div class="cron-banner">
     <div>🤖 <strong>Autonomous Sublet Hunter Active (Every 6 Hours):</strong> Scanning Facebook Groups, Marketplace, Yad2, Dorin & Israela automatically.</div>
