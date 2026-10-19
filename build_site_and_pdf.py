@@ -54,9 +54,9 @@ for a in apts:
         '''
 
     if a["tier"] == "TOP":
-        tier_badge = '<span class="tier-top">⭐ TOP PICK ≤ ₪3,000 · מומלץ</span>'
+        tier_badge = '<span class="tier-top">⭐ IN CONTACT · בקשר פעיל</span>'
     elif a["tier"] == "NEW_TOP":
-        tier_badge = '<span class="tier-new">🆕 NEW VERIFIED · נוסף כעת</span>'
+        tier_badge = '<span class="tier-new">🆕 NEW · REAL YAD2 LISTING · מודעה אמיתית</span>'
     else:
         tier_badge = '<span class="tier-bonus">🔥 BONUS DIRECT · נוסף</span>'
 
@@ -73,7 +73,7 @@ for a in apts:
 
       <div class="photo-section">
         <a href="{main_photo}" target="_blank">
-          <img id="main-img-{a["rank"]}" src="{main_photo}" class="main-photo" alt="{a["title_en"]}" loading="lazy"/>
+          {f'<img id="main-img-{a["rank"]}" src="{main_photo}" class="main-photo" alt="{a["title_en"]}" loading="lazy"/>' if main_photo else '<div style="padding:12px;color:#94a3b8;text-align:center">No photo in the ad · אין תמונה במודעה</div>'}
         </a>
         {thumbs_html}
       </div>
@@ -407,7 +407,7 @@ index_html = f'''<!DOCTYPE html>
 <body>
   <header class="hero">
     <h1>🏖️ Bat Yam & Holon ≤ ₪3,500 — 6 months, all-inclusive, near Yoseftal light rail · visits Monday 20/10</h1>
-    <h2>סאבלט ודירות בבת ים עד 3,000 ₪ — כניסה מיידית לפני יום שלישי (ללא צ'קים / כולל הכל)</h2>
+    <h2>דירות בבת ים וחולון עד 3,500 ₪ — חצי שנה, כולל הכל, ליד תחנת יוספטל · ביקורים יום שני 20/10</h2>
     <p class="hero-sub">
       Prepared for <strong>David & Leeya</strong> · Verified Live Listings from Facebook Sublet Groups, Yad2, Dorin, Glotels & Israela · Direct WhatsApp & Original Links Included
     </p>
