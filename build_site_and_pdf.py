@@ -122,7 +122,7 @@ index_html = f'''<!DOCTYPE html>
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Bat Yam Sublets & Studios ≤ ₪3,000 | סאבלט ודירות בבת ים לכניסה מיידית</title>
+  <title>Bat Yam & Holon ≤ ₪3,500 — visits 20/10 | דירות בבת ים וחולון עד 3,500 ₪ — ביקורים 20/10</title>
   <style>
     :root {{
       --bg: #0f172a;
@@ -406,7 +406,7 @@ index_html = f'''<!DOCTYPE html>
 </head>
 <body>
   <header class="hero">
-    <h1>🏖️ Bat Yam Sublets & Studios ≤ ₪3,000 (Immediate Move-In Before Tuesday)</h1>
+    <h1>🏖️ Bat Yam & Holon ≤ ₪3,500 — 6 months, all-inclusive, near Yoseftal light rail · visits Monday 20/10</h1>
     <h2>סאבלט ודירות בבת ים עד 3,000 ₪ — כניסה מיידית לפני יום שלישי (ללא צ'קים / כולל הכל)</h2>
     <p class="hero-sub">
       Prepared for <strong>David & Leeya</strong> · Verified Live Listings from Facebook Sublet Groups, Yad2, Dorin, Glotels & Israela · Direct WhatsApp & Original Links Included
@@ -482,7 +482,7 @@ print_html = f'''<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Bat Yam Sublets & Studios ≤ ₪3,000 — David & Leeya</title>
+  <title>Bat Yam & Holon ≤ ₪3,500 — David & Leeya — 20/10</title>
   <style>
     @page {{ size: A4; margin: 12mm; }}
     body {{ font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif; color: #0f172a; font-size: 11px; line-height: 1.4; }}
@@ -500,7 +500,7 @@ print_html = f'''<!DOCTYPE html>
   </style>
 </head>
 <body>
-  <h1>🏖️ Bat Yam Sublets & Studios ≤ ₪3,000 (Immediate Move-In Before Tuesday — No Checks)</h1>
+  <h1>🏖️ Bat Yam & Holon ≤ ₪3,500 — 6 months, all-inclusive, near Yoseftal (visits Monday 20/10)</h1>
   <h2>סאבלט ודירות בבת ים עד 3,000 ₪ — כניסה מיידית לפני יום שלישי (עבור דוד וליאה)</h2>
   <p style="margin-bottom:10px;">Generated: {now_str} · Click any link below to open the original listing or direct WhatsApp chat.</p>
   {"".join(print_cards)}
@@ -521,7 +521,7 @@ chrome_bins = [
     "/Applications/Chromium.app/Contents/MacOS/Chromium",
 ]
 chrome = next((b for b in chrome_bins if os.path.exists(b)), None)
-if chrome:
+if chrome and not os.environ.get("NO_PDF"):
     subprocess.run([
         chrome,
         "--headless=new",
