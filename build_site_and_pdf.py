@@ -53,11 +53,15 @@ for a in apts:
         </a>
         '''
 
-    tier_badge = (
-        '<span class="tier-top">⭐ TOP PICK ≤ ₪3,000 · מומלץ</span>'
-        if a["tier"] == "TOP"
-        else '<span class="tier-bonus">🔥 BONUS DIRECT · נוסף</span>'
-    )
+    if a["tier"] == "TOP":
+        tier_badge = '<span class="tier-top">⭐ TOP PICK ≤ ₪3,000 · מומלץ</span>'
+    elif a["tier"] == "NEW_TOP":
+        tier_badge = '<span class="tier-new">🆕 NEW VERIFIED · נוסף כעת</span>'
+    else:
+        tier_badge = '<span class="tier-bonus">🔥 BONUS DIRECT · נוסף</span>'
+
+    wa_status_en_html = f'<div class="wa-status-banner">{a["wa_status_en"]}</div>' if a.get("wa_status_en") else ""
+    wa_status_he_html = f'<div class="wa-status-banner">{a["wa_status_he"]}</div>' if a.get("wa_status_he") else ""
 
     cards_html.append(f'''
     <article class="apt-card" id="apt-{a["rank"]}">
@@ -80,6 +84,7 @@ for a in apts:
           <div class="lang-tag">🇬🇧 ENGLISH</div>
           <h2 class="apt-title">{a["title_en"]}</h2>
           <div class="price-detail">{a["price_label_en"]}</div>
+          {wa_status_en_html}
           <div class="address-line">📍 <strong>Address:</strong> {a["address_en"]}</div>
           <div class="badges-wrap">{badges_en}</div>
           <p class="why-box">{a["why_en"]}</p>
@@ -91,6 +96,7 @@ for a in apts:
           <div class="lang-tag">🇮🇱 עברית</div>
           <h2 class="apt-title">{a["title_he"]}</h2>
           <div class="price-detail">{a["price_label_he"]}</div>
+          {wa_status_he_html}
           <div class="address-line">📍 <strong>כתובת:</strong> {a["address_he"]}</div>
           <div class="badges-wrap">{badges_he}</div>
           <p class="why-box">{a["why_he"]}</p>
@@ -261,6 +267,25 @@ index_html = f'''<!DOCTYPE html>
       font-weight: 700;
       font-size: 0.85rem;
     }}
+    .tier-new {{
+      background: rgba(34,197,94,0.2);
+      color: #86efac;
+      border: 1px solid #22c55e;
+      padding: 4px 12px;
+      border-radius: 999px;
+      font-weight: 700;
+      font-size: 0.85rem;
+    }}
+    .wa-status-banner {{
+      background: rgba(34,197,94,0.16);
+      border: 1px solid #22c55e;
+      color: #bbf7d0;
+      padding: 8px 11px;
+      border-radius: 8px;
+      font-size: 0.86rem;
+      font-weight: 600;
+      margin-bottom: 10px;
+    }}
     .price-pill {{
       background: var(--green);
       color: #052e16;
@@ -420,6 +445,8 @@ for a in apts:
         for p in photos
     )
     wa_link = a["whatsapp_url"] if a["whatsapp_url"] else a["source_url"]
+    p_wa_en = f'<div style="color:#15803d;font-weight:700;margin:3px 0;">{a["wa_status_en"]}</div>' if a.get("wa_status_en") else ""
+    p_wa_he = f'<div style="color:#15803d;font-weight:700;margin:3px 0;">{a["wa_status_he"]}</div>' if a.get("wa_status_he") else ""
     print_cards.append(f'''
     <div class="print-card">
       <div class="print-head">
@@ -430,12 +457,14 @@ for a in apts:
       <div class="print-cols">
         <div class="p-en" dir="ltr">
           <div><strong>🇬🇧 {a["price_label_en"]}</strong></div>
+          {p_wa_en}
           <div>📍 {a["address_en"]}</div>
           <p>{a["why_en"]}</p>
           <div>👤 <strong>Contact:</strong> {a["contact_name"]} {a["phone"]}</div>
         </div>
         <div class="p-he" dir="rtl">
           <div><strong>🇮🇱 {a["price_label_he"]}</strong></div>
+          {p_wa_he}
           <div>📍 {a["address_he"]}</div>
           <p>{a["why_he"]}</p>
           <div>👤 <strong>איש קשר:</strong> {a["contact_name"]} <span dir="ltr">{a["phone"]}</span></div>
