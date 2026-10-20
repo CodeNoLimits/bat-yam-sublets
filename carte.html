@@ -51,8 +51,8 @@ P.forEach(p=>{
   h+='<span class="l">📍 <a target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query='+p.lat+','+p.lon+'">'+esc(p.adresse)+'</a></span>';
   if(p.distance) h+='<small>'+esc(p.distance)+'</small>';
   if(p.contact) h+='<span class="l">👤 '+esc(p.contact)+'</span>';
-  const T=tels(p.tel);
-  if(T.length) T.forEach(t=>{h+='<a class="btn" href="tel:'+t.replace(/[^\d+]/g,'')+'">📞 '+esc(t)+'</a><a class="btn wa" target="_blank" rel="noopener" href="'+wa(t)+'">WhatsApp</a>';});
+  const NUM=tels(p.tel);
+  if(NUM.length) NUM.forEach(t=>{h+='<a class="btn" href="tel:'+t.replace(/[^\d+]/g,'')+'">📞 '+esc(t)+'</a><a class="btn wa" target="_blank" rel="noopener" href="'+wa(t)+'">WhatsApp</a>';});
   else if(p.tel) h+='<span class="l">📞 '+esc(p.tel)+'</span>';
   h+=p.lien?'<a class="btn gris" target="_blank" rel="noopener" href="'+esc(p.lien)+'">'+T.voir+'</a>':'<span class="l"><small>'+T.pas_lien+'</small></span>';
   if(p.note) h+='<p style="margin:8px 0 0"><small>'+esc(p.note)+'</small></p>';
