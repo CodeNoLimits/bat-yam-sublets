@@ -196,7 +196,7 @@ P.forEach(p=>{
   if(p.heure) h+='<div class="h">🕒 '+esc(p.heure)+' — '+esc(p.libelle)+'</div>'; else h+='<div class="h">'+esc(p.libelle)+'</div>';
   h+='<h3>'+esc(p.titre||p.adresse)+'</h3>';
   h+='<div class="px">'+esc(p.prix)+'</div>'+(p.prix_note?'<small>'+esc(p.prix_note)+'</small>':'');
-  if(!p.exact) h+='<small>⚠️ Position approximative (milieu de la rue, numéro introuvable sur la carte)</small>';
+  if(!p.exact) h+='<br><small>⚠️ Position approximative (milieu de la rue, numéro introuvable sur la carte)</small>';
   h+='<span class="l">📍 <a target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query='+p.lat+','+p.lon+'">'+esc(p.adresse)+'</a></span>';
   if(p.distance) h+='<small>'+esc(p.distance)+'</small>';
   if(p.contact) h+='<span class="l">👤 '+esc(p.contact)+'</span>';
