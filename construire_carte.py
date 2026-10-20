@@ -40,7 +40,7 @@ def yad2_par_adresse():
             c = a["coords"]
             k = f"{a['street']['text']}|{a['house']['number']}"
             # plusieurs annonces à la même adresse → position gardée, lien retiré (impossible de savoir laquelle)
-            out[k] = (c["lat"], c["lon"], None if k in out else d.get("url"))
+            out[k] = (float(c["lat"]), float(c["lon"]), None if k in out else d.get("url"))
         except Exception:
             continue
     return out
