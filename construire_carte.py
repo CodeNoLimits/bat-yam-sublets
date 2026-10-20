@@ -99,16 +99,46 @@ def geocoder(adr, cache):
     return best
 
 
+T = {
+    "fr": {"fichier": "visites.json", "sortie": "carte.html", "autre": "carte_en.html", "autre_lib": "🇬🇧 English",
+           "titre": "Carte des appartements", "h1": "🗺️ Appartements autour de la gare Bat Yam – Yoseftal",
+           "sous": "Mis à jour : {maj} · cercles = 1 km et 2 km autour de la gare · clique sur un point pour l'adresse, le téléphone et l'annonce.",
+           "groupes": ["RDV aujourd'hui", "À appeler", "En attente de réponse", "Sans numéro (annonce)"],
+           "leg": ["RDV confirmé", "RDV proposé / à confirmer", "À appeler", "En attente de réponse", "gare"],
+           "nonplaces": "Non placés sur la carte (adresse imprécise)", "annonce": "annonce", "gare": "Gare Bat Yam – Yoseftal",
+           "maps": "Ouvrir dans Maps", "voir": "🔗 Voir l'annonce", "pas_lien": "Pas de lien d'annonce enregistré",
+           "approx": "⚠️ Position approximative (milieu de la rue, numéro introuvable sur la carte)",
+           "attrib": "Fond © Esri · données © OpenStreetMap et contributeurs", "aria": "Carte des appartements"},
+    "en": {"fichier": "visites_en.json", "sortie": "carte_en.html", "autre": "carte.html", "autre_lib": "🇫🇷 Français",
+           "titre": "Apartment map", "h1": "🗺️ Apartments around Bat Yam – Yoseftal station",
+           "sous": "Updated: {maj} · circles = 1 km and 2 km around the station · tap a point for the address, phone and listing.",
+           "groupes": ["Viewing today", "To call", "Waiting for a reply", "No number (listing)"],
+           "leg": ["Viewing confirmed", "Viewing proposed / to confirm", "To call", "Waiting for a reply", "station"],
+           "nonplaces": "Not on the map (imprecise address)", "annonce": "listing", "gare": "Bat Yam – Yoseftal station",
+           "maps": "Open in Maps", "voir": "🔗 See the listing", "pas_lien": "No listing link saved",
+           "approx": "⚠️ Approximate position (middle of the street, house number not found on the map)",
+           "attrib": "Basemap © Esri · data © OpenStreetMap contributors", "aria": "Apartment map"},
+}
+COLOC = re.compile(r"coloc|roommate|room in a shared|shared flat|flatmate|שותף|שותפ", re.I)
+
+
 def main():
-    v = json.load(open(os.path.join(SRC, "visites.json")))
+    for lang in ("fr", "en"):
+        construire(lang)
+
+
+def construire(lang):
+    t = T[lang]
+    v = json.load(open(os.path.join(SRC, t["fichier"])))
     liens = liens_par_tel()
     y2 = yad2_par_adresse()
     cache = json.load(open(CACHE)) if os.path.exists(CACHE) else {}
-    groupes = [("visites", "RDV aujourd'hui"), ("appeler", "À appeler"), ("attente", "En attente de réponse"),
-               ("sans_numero", "Sans numéro (annonce)")]
+    groupes = list(zip(("visites", "appeler", "attente", "sans_numero"), t["groupes"]))
     points, non_places = [], []
     for g, libelle in groupes:
         for x in v.get(g, []):
+            if COLOC.search(json.dumps(x, ensure_ascii=False)):
+                continue  # David 20/10 : pas de colocation
             brut = x.get("adresse") or x.get("titre") or ""
             adr = adresse_propre(brut)
             m_he = re.match(r"(.+?)\s+(\d+)\s*,", en_hebreu(adr))
@@ -117,8 +147,8 @@ def main():
             tel = x.get("tel") or ""
             lien = x.get("source") or (hit[2] if hit else "") or ""
             if not lien:
-                for t in re.split(r"[·/]", tel):
-                    lien = lien or liens.get(chiffres(t), "")
+                for num in re.split(r"[·/]", tel):
+                    lien = lien or liens.get(chiffres(num), "")
             if not lien:
                 m = re.search(r"Yad2 ([a-z0-9]{8})", x.get("note", ""))
                 lien = f"https://www.yad2.co.il/realestate/item/{m.group(1)}" if m else ""
@@ -134,22 +164,29 @@ def main():
     json.dump(cache, open(CACHE, "w"), ensure_ascii=False, indent=1)
 
     nav = open(os.path.join(ICI, "nav_commun.html")).read()
-    page = PAGE.replace("__NAV__", nav).replace("__MAJ__", html.escape(v.get("maj", ""))) \
+    page = PAGE
+    for k, val in t.items():
+        if isinstance(val, str):
+            page = page.replace(f"__T_{k}__", html.escape(val.format(maj=v.get("maj", "")) if k == "sous" else val, quote=False))
+    for i, val in enumerate(t["leg"]):
+        page = page.replace(f"__LEG{i}__", html.escape(val))
+    page = page.replace("__LANG__", lang).replace("__TJS__", json.dumps(t, ensure_ascii=False))
+    page = page.replace("__NAV__", nav) \
         .replace("__POINTS__", json.dumps(points, ensure_ascii=False)) \
         .replace("__GARE__", json.dumps(GARE)) \
         .replace("__NONPLACES__", "".join(
             f"<li><b>{html.escape(p['titre'] or p['adresse'])}</b> — {html.escape(p['adresse'])} · {html.escape(p['prix'])}"
             + (f" · <a href='tel:{html.escape(p['tel'])}'>{html.escape(p['tel'])}</a>" if chiffres(p['tel']) else "")
-            + (f" · <a href='{html.escape(p['lien'])}' target='_blank' rel='noopener'>annonce</a>" if p['lien'] else "") + "</li>"
+            + (f" · <a href='{html.escape(p['lien'])}' target='_blank' rel='noopener'>{t['annonce']}</a>" if p['lien'] else "") + "</li>"
             for p in non_places))
-    open(os.path.join(ICI, "carte.html"), "w").write(page)
-    print(f"carte.html : {len(points)} points placés, {len(non_places)} non placés, "
+    open(os.path.join(ICI, t["sortie"]), "w").write(page)
+    print(f"{t['sortie']} : {len(points)} points placés, {len(non_places)} non placés, "
           f"{sum(1 for p in points if p['lien'])} avec lien d'annonce")
 
 
-PAGE = r"""<!doctype html><html lang="fr"><head><meta charset="utf-8">
+PAGE = r"""<!doctype html><html lang="__LANG__"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Carte des appartements</title>
+<title>__T_titre__</title>
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <style>
@@ -167,19 +204,19 @@ header{padding:12px 16px}h1{font-size:19px;margin:0 0 2px}header p{margin:0;colo
 .etiq{background:#fff;border:1px solid #0f6e74;border-radius:6px;padding:0 4px;font:700 11px system-ui;color:#0f6e74;white-space:nowrap}
 section{padding:8px 16px 24px}section ul{padding-left:18px}a{color:#0f6e74}
 </style></head><body>__NAV__
-<header><h1>🗺️ Appartements autour de la gare Bat Yam – Yoseftal</h1>
-<p>Mis à jour : __MAJ__ · cercles = 1 km et 2 km autour de la gare · clique sur un point pour l'adresse, le téléphone et l'annonce.</p></header>
-<div class="legende"><span><i style="background:#1f9d55"></i>RDV confirmé</span><span><i style="background:#e08a00"></i>RDV proposé / à confirmer</span>
-<span><i style="background:#2f6fd6"></i>À appeler</span><span><i style="background:#8a96a0"></i>En attente de réponse</span><span>🚆 gare</span></div>
-<div id="carte" role="application" aria-label="Carte des appartements"></div>
-<section><h2 style="font-size:16px">Non placés sur la carte (adresse imprécise)</h2><ul>__NONPLACES__</ul></section>
+<header><h1>__T_h1__ <a href="__T_autre__" style="font-size:13px;font-weight:600;margin-left:8px;padding:4px 10px;border-radius:999px;border:1px solid #0f6e74;text-decoration:none;white-space:nowrap">__T_autre_lib__</a></h1>
+<p>__T_sous__</p></header>
+<div class="legende"><span><i style="background:#1f9d55"></i>__LEG0__</span><span><i style="background:#e08a00"></i>__LEG1__</span>
+<span><i style="background:#2f6fd6"></i>__LEG2__</span><span><i style="background:#8a96a0"></i>__LEG3__</span><span>🚆 __LEG4__</span></div>
+<div id="carte" role="application" aria-label="__T_aria__"></div>
+<section><h2 style="font-size:16px">__T_nonplaces__</h2><ul>__NONPLACES__</ul></section>
 <script>
-const P=__POINTS__, G=__GARE__;
+const P=__POINTS__, G=__GARE__, T=__TJS__;
 const m=L.map('carte').setView(G,15);
 L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}',{maxZoom:19,
- attribution:'Fond © Esri · données © OpenStreetMap et contributeurs'}).addTo(m);
+ attribution:T.attrib}).addTo(m);
 L.marker(G,{icon:L.divIcon({html:'<div style="font-size:26px">🚆</div>',className:'',iconSize:[28,28],iconAnchor:[14,14]})})
- .addTo(m).bindPopup('<b>Gare Bat Yam – Yoseftal</b><br><a target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query='+G[0]+','+G[1]+'">Ouvrir dans Maps</a>');
+ .addTo(m).bindPopup('<b>'+T.gare+'</b><br><a target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query='+G[0]+','+G[1]+'">'+T.maps+'</a>');
 [1000,2000].forEach(r=>L.circle(G,{radius:r,color:'#0f6e74',weight:1,fill:false,dashArray:'4 6'}).addTo(m));
 const esc=s=>(s||'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const couleur=p=>p.groupe==='visites'?(p.statut==='confirme'?'#1f9d55':'#e08a00'):p.groupe==='appeler'?'#2f6fd6':'#8a96a0';
@@ -196,14 +233,14 @@ P.forEach(p=>{
   if(p.heure) h+='<div class="h">🕒 '+esc(p.heure)+' — '+esc(p.libelle)+'</div>'; else h+='<div class="h">'+esc(p.libelle)+'</div>';
   h+='<h3>'+esc(p.titre||p.adresse)+'</h3>';
   h+='<div class="px">'+esc(p.prix)+'</div>'+(p.prix_note?'<small>'+esc(p.prix_note)+'</small>':'');
-  if(!p.exact) h+='<br><small>⚠️ Position approximative (milieu de la rue, numéro introuvable sur la carte)</small>';
+  if(!p.exact) h+='<br><small>'+T.approx+'</small>';
   h+='<span class="l">📍 <a target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query='+p.lat+','+p.lon+'">'+esc(p.adresse)+'</a></span>';
   if(p.distance) h+='<small>'+esc(p.distance)+'</small>';
   if(p.contact) h+='<span class="l">👤 '+esc(p.contact)+'</span>';
   const T=tels(p.tel);
   if(T.length) T.forEach(t=>{h+='<a class="btn" href="tel:'+t.replace(/[^\d+]/g,'')+'">📞 '+esc(t)+'</a><a class="btn wa" target="_blank" rel="noopener" href="'+wa(t)+'">WhatsApp</a>';});
   else if(p.tel) h+='<span class="l">📞 '+esc(p.tel)+'</span>';
-  h+=p.lien?'<a class="btn gris" target="_blank" rel="noopener" href="'+esc(p.lien)+'">🔗 Voir l\'annonce</a>':'<span class="l"><small>Pas de lien d\'annonce enregistré</small></span>';
+  h+=p.lien?'<a class="btn gris" target="_blank" rel="noopener" href="'+esc(p.lien)+'">'+T.voir+'</a>':'<span class="l"><small>'+T.pas_lien+'</small></span>';
   if(p.note) h+='<p style="margin:8px 0 0"><small>'+esc(p.note)+'</small></p>';
   mk.bindPopup(h+'</div>'); pts.push([p.lat,p.lon]);
 });
