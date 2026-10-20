@@ -176,7 +176,8 @@ section{padding:8px 16px 24px}section ul{padding-left:18px}a{color:#0f6e74}
 <script>
 const P=__POINTS__, G=__GARE__;
 const m=L.map('carte').setView(G,15);
-L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom:19,attribution:'© OpenStreetMap'}).addTo(m);
+L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png',{maxZoom:20,subdomains:'abcd',
+ attribution:'© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> · © <a href="https://carto.com/attributions">CARTO</a>'}).addTo(m);
 L.marker(G,{icon:L.divIcon({html:'<div style="font-size:26px">🚆</div>',className:'',iconSize:[28,28],iconAnchor:[14,14]})})
  .addTo(m).bindPopup('<b>Gare Bat Yam – Yoseftal</b><br><a target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query='+G[0]+','+G[1]+'">Ouvrir dans Maps</a>');
 [1000,2000].forEach(r=>L.circle(G,{radius:r,color:'#0f6e74',weight:1,fill:false,dashArray:'4 6'}).addTo(m));
